@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
+import './LandingPage.css';
+
 
 // Defining a calculator component
 class LandingPage extends Component{
-    constructor(props){
-        super(props);
-        
-    }
+    
     render(){
         return(
-            <div>
-                <h1> hElLo!!! </h1>
+            <div className = "container">
+                <header className="masthead d-flex"></header>
             </div>
         )
     }
