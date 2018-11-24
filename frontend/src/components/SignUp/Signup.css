@@ -1,0 +1,78 @@
+h1 {
+    font-size: 36px;
+    text-align: center
+}
+
+.profile-form{
+    margin-left:90px;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    text-align: center
+
+}
+.jumbotron{
+    background-image: url('../images/earth-lights-world41949.jpg');
+    background-attachment: fixed;
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+    text-align: center;
+    min-height: 100vh;
+    padding: top 0;
+    
+}
+
+.main-div {
+    /* background: #ffffff none repeat scroll 0 0;
+    border-radius: 4px;
+    margin: 20px auto 30px;
+  
+    max-width: 70%;
+    max-height: 100%;
+    padding: 60px 70px 70px 71px;
+    border: 1px solid #d4d4d4; */
+    border-radius: 4px;
+    margin: 20px auto 30px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 60px 70px 70px 71px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+
+
+
+
+}
+
+.container
+{  
+    height: 100%;
+    display: table-cell;   
+    box-align: center;
+      
+}
+
+.col-xs-6 {
+    position: relative;
+    min-height: 10px;
+    padding-right: 10px;
+    padding-left: 1px;
+    
+}
+
+.col-xs-7 {
+    position: relative;
+    min-height: 10px;
+    padding-right: 1px;
+    padding-left: 10px;
+    
+}
+
+
+

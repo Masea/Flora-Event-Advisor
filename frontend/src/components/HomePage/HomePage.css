@@ -1,0 +1,22 @@
+
+  .imagestyle {
+  
+  background-position: center; 
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding: top 0;
+  overflow:hidden;
+  
+  }
+
+  .imagestyle h1 {
+      position:relative;
+      margin-top: 300px;
+      margin-left: 600px;
+      color: azure;
+      text-align: center;
+      background-color: rgb(1, 1, 12);
+      max-width: 200px;
+      padding:10px;
+     
+  }

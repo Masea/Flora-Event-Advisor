@@ -1,0 +1,45 @@
+.alert-danger {
+    background-color: #ed605a;
+    border-color: transparent;
+    color: #fff;
+    padding: 20px;
+    font-size : 14px;
+  }
+
+  .jumbotron{
+    background-image: url('../images/world map.jpg');
+    background-attachment: fixed;
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+    text-align:center;
+    min-height: 100vh;
+    padding: top 0;
+    
+}
+
+  .container{
+  
+    height: 100%;
+    display: table-cell;   
+    /* background-image: url("../images/illuminated map.jpg"); */
+    
+  }
+
+  /* .panel{ */
+
+    /* background-color: aqua; */
+    /* text-align: center; */
+  /* } */
+
+  .main-div {
+      
+     /* background: #ffffff none repeat scroll 0 0; */
+    border-radius: 4px;
+    margin: 20px auto 30px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 60px 70px 70px 71px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+}
