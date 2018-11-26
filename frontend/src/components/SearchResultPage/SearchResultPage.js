@@ -16,7 +16,7 @@ class SearchResultPage extends Component{
         return(
             <div>
                 <div className='search-result-page'>
-                    <div className='container w-100'>
+                    <div className='container w-100 p-0'>
                     <div className='row justify-content-center'>
                         <div className='search-result-map col-md-7 col-sm-12 col-lg-7' id='locationMap'>
                             <SimpleMap/> 
@@ -25,7 +25,7 @@ class SearchResultPage extends Component{
                         <div className='results col-12 col-md-5 col-sm-12 col-lg-5'>
                             <h5>We recommend...</h5>
                             <div className="container-fluid">
-                                <div className='row flex-row flex-nowrap'>                                 
+                                <div className='d-flex flex-row flex-nowrap'>                                 
                                     <EventCard cardType = 'recommended' eventid='1'/>
                                     <EventCard cardType = 'recommended' eventid='1'/>
                                     <EventCard cardType = 'recommended' eventid='1'/>

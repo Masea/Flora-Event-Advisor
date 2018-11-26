@@ -1,5 +1,4 @@
 .search-result-page{
-    margin-top      :   2%;
     padding         :   2%;
     min-height      : 100%;
     width           : 100%;
@@ -25,11 +24,11 @@
 .results .recommended-results{
     
     max-height       :  30%;
-    margin-bottom    :  2%; 
+    margin-bottom    :  2%;
+    width            :  500px; 
     overflow-x       :  scroll;
     overflow-y       :  hidden;
-    /* white-space      : nowrap; */
-    font-size        :  .5rem; 
+    font-size        :  .5rem;
 }
 
 .recommended-results div{

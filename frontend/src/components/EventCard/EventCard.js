@@ -17,10 +17,10 @@ class EventCard extends Component{
     render(){
         return(
             <div>
-               <div className='card card-body m-2'>
+               <div className='card card-body m-2 eventCard'>
                     {/* Recommended Events Card */}
                     
-                    <div className='recommended bg-white' style={{display: this.props.cardType === 'recommended' ? 'block':'none'}}>
+                    <div className='recommended mx-0 bg-white' style={{display: this.props.cardType === 'recommended' ? 'block':'none'}}>
                         <div className='row'>
                             <div className="col-3 px-0 border-0 recommendedImg">
                                 <img src='images/eventImage.jpeg' alt="Recommended Event" className='w-100'/>
@@ -29,13 +29,13 @@ class EventCard extends Component{
                                 <p>Photos with your Pet for $20.</p>
                                 <p>Photos with your Pet for $40.</p>
                                 {/* <p>{this.state.eventTitle}</p><br/>
-                                <p>{this.state.eventCity}</p><br/>                                 */}
+                                <p>{this.state.eventCity}</p><br/>*/}
                             </div>
                         </div>
                     </div>
 
                     {/* Searched Image Card */}
-                    <div className='searched' style={{display: this.props.cardType === 'searched' ? 'block':'none'}}>
+                    <div className='searched mx-0' style={{display: this.props.cardType === 'searched' ? 'block':'none'}}>
                         <div className='row'>
                             <div className="col-3 px-0 border-0 searchedImg">
                                 <img src='images/searchedImg.jpg' alt="Searched Event" className='w-100'/>
