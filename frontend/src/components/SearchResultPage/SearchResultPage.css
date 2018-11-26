@@ -21,8 +21,7 @@
     color           :   #1e0160;    
 
 }
-.results .recommended-results{
-    
+.results .recommended-results{ 
     max-height       :  30%;
     margin-bottom    :  2%;
     width            :  500px; 
@@ -31,9 +30,10 @@
     font-size        :  .5rem;
 }
 
-.recommended-results div{
-    float: left;
-    clear: both;
+.result-carousel{
+    overflow-x      :   scroll;
+    overflow-y      :   hidden;
+    height          :   100%;
 }
 
 .results .searched-results{
