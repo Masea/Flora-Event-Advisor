@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+//import LandingPage from './LandingPage/LandingPage';
 import Login from './Login/Login';
 import Signup from './SignUp/SignUp';
 import SearchResultPage from './SearchResultPage/SearchResultPage';
