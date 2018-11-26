@@ -21,8 +21,8 @@ class EventCard extends Component{
                     {/* Recommended Events Card */}
                     
                     <div className='recommended mx-0 bg-white' style={{display: this.props.cardType === 'recommended' ? 'block':'none'}}>
-                        <div className='row'>
-                            <div className="col-3 px-0 border-0 recommendedImg">
+                        <div className='row flex-row'>
+                            <div className="col-3 px-0 border-0 align-self-center recommendedImg">
                                 <img src='images/eventImage.jpeg' alt="Recommended Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 recommendedData">
@@ -36,8 +36,8 @@ class EventCard extends Component{
 
                     {/* Searched Image Card */}
                     <div className='searched mx-0' style={{display: this.props.cardType === 'searched' ? 'block':'none'}}>
-                        <div className='row'>
-                            <div className="col-3 px-0 border-0 searchedImg">
+                        <div className='row flex-row'>
+                            <div className="col-3 px-0 border-0 align-self-center searchedImg">
                                 <img src='images/searchedImg.jpg' alt="Searched Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 searchedData">
