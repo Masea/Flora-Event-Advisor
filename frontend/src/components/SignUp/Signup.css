@@ -50,13 +50,13 @@ p {
 
 }
 
-.container
+/* .container
 {  
     height: 100%;
     display: table-cell;   
     box-align: center;
       
-}
+} */
 
 .col-xs-6 {
     position: relative;
