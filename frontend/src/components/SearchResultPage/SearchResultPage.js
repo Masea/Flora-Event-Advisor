@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './SearchResultPage.css';
 import SimpleMap from '../GoogleMap/GoogleMap';
 import EventCard from '../EventCard/EventCard';
+import NavBar from '../NavBar/NavBar';
 // import axios from 'axios';
 // import cookie from 'react-cookies';
 // import {Redirect} from 'react-router';
@@ -15,6 +16,7 @@ class SearchResultPage extends Component{
     render(){
         return(
             <div>
+                <NavBar/>
                 <div className='search-result-page'>
                     <div className='container w-100 p-0'>
                     <div className='row justify-content-center'>
