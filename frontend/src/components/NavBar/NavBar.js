@@ -8,7 +8,16 @@ class NavBar extends Component {
         super(props);
     this.state = {
         isLoggedIn: false,
-    }}
+        startDate: '',
+        toDate:'',
+        city:'',
+    }
+    this.onChange       = this.onChange.bind(this);
+
+}
+onChange(e){
+    this.setState({[e.target.name]: e.target.value});
+}
 
     render() {
         
@@ -23,16 +32,28 @@ class NavBar extends Component {
                                 <img alt="Flora" src="./favicon.ico" className="align-self-center" height="30px"/>
                             </div>
 
-                            {/* <form className="navbar-form navbar-right ml-auto form-inline"  onSubmit={this.onSubmit}>
-                                <div className='input-group input-group-sm'>
-                                    <input type='email'    className='form-control' name='email'    placeholder='Email' value={this.state.email} onChange={this.onChange}/>
-                                </div>
-                                <div className='input-group input-group-sm mx-2'>
-                                    <input type='password' className='form-control input-sm' name='password' placeholder='Password' value={this.state.password} onChange={this.onChange} />
-                                </div>  
-                                <button type='submit' className='btn btn-outline-light btn-sm'>Sign In</button>
-                            </form> */}
                             
+                            <form className="navbar-form navbar-left ml-auto form-inline searchForm" >
+                                
+                                <div className='input-group input-group-sm mx-2'>
+                                    <input type='date' className='form-control input-sm' name='startDate' placeholder='From' value={this.state.startDate} onChange={this.onChange} />
+                                </div> 
+                                <div className='input-group input-group-sm mx-2'>
+                                    <input type='date' className='form-control input-sm' name='toDate' placeholder='To' value={this.state.toDate} onChange={this.onChange} />
+                                </div> 
+                                <div className='input-group input-group-sm mr-1'>
+                                    <input type='search'  className='form-control' name='city' placeholder='City' value={this.state.city} onChange={this.onChange}/>
+                                </div>
+                                <div className='input-group-btn'>                                
+                                    <button type='submit' className='btn btn-outline-light btn-sm' data-effect='ripple'><i className="fas fa-search fa-1x"></i></button>
+                                </div>
+                            </form>
+                            
+                            <div className='navbar-right '>
+                                <Link to="/login"><span className='icon-text'><i class="fas fa-sign-in-alt fa-2x"></i>Sign In</span></Link>;
+                                <Link to="/signup"><span className='icon-text'><i class="fas fa-user-plus fa-2x"></i>Sign Up</span></Link>
+                            </div>
+
 
                             {/* Logged In Navbar Additions */}
                             <div className='align-self-center align-items-end ml-auto'>
@@ -47,16 +68,14 @@ class NavBar extends Component {
                                                 <div className='navbar-profile-name'>Jane Doe</div>
                                                 <br/>
                                                 <Link to="/login"><span className='text-info'>Your Profile</span></Link><br/><br/>
-                                                <Link to="/login"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/> Saved Events</span></Link>                                 
-                                 
-
+                                                <Link to="/login"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/> Saved Events</span></Link>
                                             </div>
                                             <span className='dropdown-item text-secondary'><button className='btn btn-danger' >Sign Out</button></span>                            
                                         </div>
                                     </li>
                                     
                                 </ul>
-        </div>
+                             </div>
                         </div>
                     </div>                    
                 </nav>

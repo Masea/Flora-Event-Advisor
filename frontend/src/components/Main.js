@@ -10,12 +10,12 @@ import UserProfile from './UserProfile/UserProfile';
 const Main = () => (
     <BrowserRouter>
         <Switch>
-            <Route exact path = '/' component={Login}/>
+            <Route exact path = '/' component={HomePage}/>
+            <Route exact path = '/HomePage' component={HomePage}/>
             <Route exact path = '/Login' component={Login}/>
             <Route exact path = '/Signup' component={Signup}/>
             <Route exact path = '/UserProfile' component={UserProfile}/>
             <Route exact path = '/SearchResultPage' component={SearchResultPage}/>
-            <Route exact path = '/HomePage' component={HomePage}/>
         </Switch>
     </BrowserRouter>
 )
