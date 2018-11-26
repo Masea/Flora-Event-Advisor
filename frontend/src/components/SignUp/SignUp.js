@@ -184,7 +184,7 @@ class Signup extends Component{
                         
                            
                             <div className="form-group">
-                            <input onChange = {this.emailChangeHandler} type="email" className="form-control" name="email" required="true" placeholder="Email Address" pattern=".com" size="30" required title="Must be a valid email address" />
+                            <input onChange = {this.emailChangeHandler} type="email" className="form-control" name="email" required="true" placeholder="Email Address" pattern=".com" size="30" title="Must be a valid email address" />
                               </div>
                               
                             <div className="form-group">  
