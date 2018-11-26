@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './SearchResultPage.css';
 import SimpleMap from '../GoogleMap/GoogleMap';
+import EventCard from '../EventCard/EventCard';
 // import axios from 'axios';
 // import cookie from 'react-cookies';
 // import {Redirect} from 'react-router';
@@ -18,17 +19,24 @@ class SearchResultPage extends Component{
                     <div className='container w-100'>
                     <div className='row justify-content-center'>
                         <div className='search-result-map col-md-7 col-sm-12 col-lg-7' id='locationMap'>
-                            {/* <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> */}
                             <SimpleMap/> 
                            
                         </div>
-                        <div className='results col-md-5 col-sm-12 col-lg-5'>
-                            <div className='recommended-results mb-2'>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                            <div className='searched-results mt-2'>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <div className='results col-12 col-md-5 col-sm-12 col-lg-5'>
+                            <h5>We recommend...</h5>
+                            <div className="container-fluid">
+                                <div className='row flex-row flex-nowrap'>                                 
+                                    <EventCard cardType = 'recommended' eventid='1'/>
+                                    <EventCard cardType = 'recommended' eventid='1'/>
+                                    <EventCard cardType = 'recommended' eventid='1'/>
 
+                                </div>
+                            </div>
+                            
+                            <div className='searched-results mt-2'>
+                                <EventCard cardType = 'searched' eventid='2'/>
+                                <EventCard cardType = 'searched' eventid='4'/>
+                                <EventCard cardType = 'searched' eventid='6'/>
                             </div>
                         </div>
 
