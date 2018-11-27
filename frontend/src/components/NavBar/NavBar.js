@@ -11,15 +11,22 @@ class NavBar extends Component {
     constructor(props){
         super(props);
     this.state = {
-        isLoggedIn: false,
-        startDate: null,
-        endDate: null,
-        city: null,
+        isLoggedIn: true,
+        startDate: undefined,
+        endDate: undefined,
+        city: undefined,
     }
     this.onChange   = this.onChange.bind(this);
     this.startDateChange   = this.startDateChange.bind(this);
     this.endDateChange   = this.endDateChange.bind(this);
 
+    this.handleSignOut = this.handleSignOut.bind(this);
+
+}
+
+handleSignOut(){
+    //e.preventDefault();
+    console.log("You will be logged out");
 }
 
 startDateChange(date){
@@ -46,8 +53,8 @@ onChange(e){
                     <div className='navbar-brand'>
                         <img alt="Flora" src="./images/flora-logo.png" className="align-self-center px-2" height="52px"/>Flora
                     </div>
-                    <button class="navbar-toggler bg-info" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-bars text-white"></i>
+                    <button className="navbar-toggler bg-info" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i className="fas fa-bars text-white"></i>
                     </button>
                     <div className="collapse navbar-collapse"  id="navbarSupportedContent">
                         <div className="justify-content-center mr-auto">
@@ -61,7 +68,6 @@ onChange(e){
                                         name='startDate'
                                         minDate={new Date()}
                                         selectsStart
-                                        onSelect={() => {alert("Start Date selected");}}
                                         placeholderText="From Date"
                                     />
                                 </div> 
@@ -86,29 +92,28 @@ onChange(e){
                             </form>
                         </div>
                            
-                        <div className='ml-auto align-self-center'>
-                            <Link to="/login"><span className='icon-text mx-2'><i class="fas fa-sign-in-alt fa-2x"></i>Sign In</span></Link>
-                            <Link to="/signup"><span className='icon-text mx-2'><i class="fas fa-user-plus fa-2x"></i>Sign Up</span></Link>
-                        </div>
+                        <div className='ml-auto align-self-center align-items-end'>
+                            {/* Logged out NavBar */}
+                            <ul className="navbar-nav" style={{display: this.state.isLoggedIn? 'none': 'flex'}}>
+                                <li className="nav-item mx-2">
+                                    <Link to="/login"><span className='icon-text'><i className="fas fa-sign-in-alt fa-2x"></i><br />Sign In</span></Link>
+                                </li>
+                                <li className="nav-item mx-2">
+                                    <Link to="/signup"><span className='icon-text'><i className="fas fa-user-plus fa-2x"></i><br />Sign Up</span></Link>
+                                </li>
+                            </ul>
 
-
-                        {/* Logged In Navbar Additions */}
-                        <div className='align-self-center align-items-end ml-auto'>
+                            {/* Logged in NavBar */}
                             <ul className='navbar-nav' style={{display: this.state.isLoggedIn? 'flex': 'none'}}>   
-                                <li className="nav-item nav-link mx-4 py-0 dropdown">
-                                    <a className="dropdown-toggle text-white" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">
-                                        <span className='icon-text'><i className="fas fa-user fa-2x"></i><br/>Me</span>
-                                    </a>
-                                    <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                                        <div className='dropdown-item' >
-                                            <div className='navbar-profile-name'>Jane Doe</div>
-                                            <br/>
-                                            <Link to="/login"><span className='text-info'>Your Profile</span></Link><br/><br/>
-                                            <Link to="/login"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/> Saved Events</span></Link>
-                                        </div>
-                                        <span className='dropdown-item text-secondary'><button className='btn btn-danger' >Sign Out</button></span>                            
-                                    </div>
-                                </li>  
+                                <li className="nav-item mx-2">
+                                    <Link to="/UserProfile"><span className='icon-text'><i className="fas fa-user fa-2x"></i><br />Me</span></Link>
+                                </li>
+                                <li className="nav-item mx-2">
+                                    <Link to="/SavedEvents"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/>Events</span></Link>
+                                </li>
+                                <li className="nav-item mx-2">
+                                    <button type="button" className='btn btn-danger' onClick={this.handleSignOut()}>Logout</button>
+                                </li>
                             </ul>
                         </div>
                     </div>                  

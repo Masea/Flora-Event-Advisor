@@ -21,22 +21,14 @@
     color           :   #1e0160;    
 
 }
-.results .recommended-results{ 
-    max-height       :  30%;
-    margin-bottom    :  2%;
-    width            :  500px; 
-    overflow-x       :  scroll;
-    overflow-y       :  hidden;
-    font-size        :  .5rem;
-}
 
 .result-carousel{
     overflow-x      :   scroll;
     overflow-y      :   hidden;
-    height          :   100%;
 }
 
-.results .searched-results{
-    max-height      : 70%;
+.searched-results{
+    max-height          : 500px;
     overflow-y      : scroll;
+    overflow-x      : hidden;
 }

@@ -19,8 +19,8 @@ const AnyReactComponent = ({ text }) => (
   
   class SimpleMap extends Component {
     static defaultProps = {
-      center: {lat: 59.95, lng: 30.33},
-      zoom: 7
+      center: {lat: 37.3352, lng: -121.8811},
+      zoom: 10
     };
   
     render() {
@@ -30,11 +30,11 @@ const AnyReactComponent = ({ text }) => (
             defaultZoom={this.props.zoom}
             bootstrapURLKeys={{ key: 'AIzaSyBYs1DUU-Za2ZQ7wBu2LIWvdcX4qbeGSvU' }}
           >
-            <AnyReactComponent 
-              lat={59.955413} 
-              lng={30.337844}  
-            />
-          </GoogleMapReact>
+          <AnyReactComponent 
+            lat={37.3352} 
+            lng={-121.8811}  
+          />
+        </GoogleMapReact>
       );
     }
   }

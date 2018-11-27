@@ -41,7 +41,7 @@ class EventCard extends Component{
                                 <img src='images/searchedImg.jpg' alt="Searched Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 searchedData">
-                                <p>Photos with your Pet for $20. <br/>Bring your canine and feline friends to Santana Row's Park Valencia (in front of Maggiano's) for a keepsake photo with Santa Claus. Photos are $20 and the proceeds will benefit The Humane Society Silicon Valley. Registration begins at 10:30 a.m.</p>
+                                <p>{this.props.eventid} - Photos with your Pet for $20. <br/>Bring your canine and feline friends to Santana Row's Park Valencia (in front of Maggiano's) for a keepsake photo with Santa Claus. Photos are $20 and the proceeds will benefit The Humane Society Silicon Valley. Registration begins at 10:30 a.m.</p>
                             </div>
                         </div>
                     </div>
