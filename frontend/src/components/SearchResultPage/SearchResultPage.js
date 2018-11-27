@@ -25,7 +25,7 @@ class SearchResultPage extends Component{
                            
                         </div>
                         <div className='results col-12 col-md-5 col-sm-12 col-lg-5'>
-                            <h5>We recommend...</h5>
+                            <h5>Recommended for you</h5>
                             <div className="container-fluid">
                                 <div className='d-flex flex-row flex-nowrap result-carousel'>                                 
                                     <EventCard cardType = 'recommended' eventid='1'/>

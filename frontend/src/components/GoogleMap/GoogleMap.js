@@ -28,11 +28,11 @@ const AnyReactComponent = ({ text }) => (
         <GoogleMapReact
             defaultCenter={this.props.center}
             defaultZoom={this.props.zoom}
+            bootstrapURLKeys={{ key: 'AIzaSyBYs1DUU-Za2ZQ7wBu2LIWvdcX4qbeGSvU' }}
           >
             <AnyReactComponent 
               lat={59.955413} 
-              lng={30.337844} 
-              text={'Kreyser Arora'} 
+              lng={30.337844}  
             />
           </GoogleMapReact>
       );

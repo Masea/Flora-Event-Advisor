@@ -6,14 +6,9 @@ body{
     position: relative;
     left: 0;
     top: 0;
-    width: 100%;
     /* font-family: "Roboto", "Lato", Arial, "Helvetica Neue", sans-serif; */
-    background-color:#019499;
-    height: 52px;
-}
-
-#mainNav > div.container{
-    background-color: transparent;
+    background-color:#fbf579;
+    min-height: 52px;
 }
 
 .nav-item{
@@ -22,19 +17,20 @@ body{
 }
 
 .icon-text{
-    color:#c5c5c5;
+    color:#0067ac;
     font-size: 0.8rem;
     font-weight: lighter;
     line-height: 1.0; 
 }
 
 .icon-text:hover{
-    color: #ffffff;
+    color: #004675;
 }
 
 .dropdown-item .navbar-profile-name{
     font-weight: bold;
 }
+
 .snackbar{
     position: fixed;
     bottom: 4px;

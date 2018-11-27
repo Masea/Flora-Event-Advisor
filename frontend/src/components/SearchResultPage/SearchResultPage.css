@@ -6,18 +6,18 @@
 }
 
 .search-result-map{
-    height   : 100vh;
+    height   : calc(100vh - 78px);
 }
 
 .results{
-    max-height      :   100%;
+    height      :   100%;
 }
 
 .results h5{
     font-size       :   0.7rem;
     margin-bottom   :   0px;
     padding-bottom  :   0px;
-    font-style      :   oblique;
+    font-style      :   bold;
     color           :   #1e0160;    
 
 }
