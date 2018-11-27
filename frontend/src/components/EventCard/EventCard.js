@@ -5,12 +5,12 @@ class EventCard extends Component{
 
     constructor(props){
         super(props);
-
-        this.setState = {
+        this.state = {
             eventTitle          : 'Test Event',
-            eventDescription    : 'This is a test event description',
-            city                : 'San Francisco',
-            state               : 'California'
+            eventDescription    : this.props.description || 'This is a test event description',
+            imgURL              : this.props.thumbnail || '',
+            address             : this.props.venue_address || '',
+            url                 : this.props.url || '',
         }
     }
 
@@ -38,10 +38,12 @@ class EventCard extends Component{
                     <div className='searched mx-0' style={{display: this.props.cardType === 'searched' ? 'block':'none'}}>
                         <div className='row flex-row'>
                             <div className="col-3 px-0 border-0 align-self-center searchedImg">
-                                <img src='images/searchedImg.jpg' alt="Searched Event" className='w-100'/>
+                                <img src={this.state.imgURL} alt="Searched Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 searchedData">
-                                <p>{this.props.eventid} - Photos with your Pet for $20. <br/>Bring your canine and feline friends to Santana Row's Park Valencia (in front of Maggiano's) for a keepsake photo with Santa Claus. Photos are $20 and the proceeds will benefit The Humane Society Silicon Valley. Registration begins at 10:30 a.m.</p>
+                                <p>{this.state.eventDescription}</p>
+                                <p>{this.state.address}</p>
+                                <button className="btn btn-info" href={this.state.url}>View Event</button>
                             </div>
                         </div>
                     </div>
