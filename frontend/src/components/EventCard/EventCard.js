@@ -12,6 +12,17 @@ class EventCard extends Component{
             address             : this.props.event.venue_address || '',
             url                 : this.props.event.url || '',
         }
+
+        this.stripHtml = this.stripHtml.bind(this);
+    }
+
+    stripHtml(html){
+        // Create a new div element
+        var temporalDivElement = document.createElement("div");
+        // Set the HTML content with the providen
+        temporalDivElement.innerHTML = html;
+        // Retrieve the text property of the element (cross-browser support)
+        return temporalDivElement.textContent || temporalDivElement.innerText || "";
     }
 
     render(){
@@ -26,8 +37,8 @@ class EventCard extends Component{
                                 <img src={this.state.imgURL} alt="Recommended Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 recommendedData">
-                                <p className="text-truncate">{this.state.eventDescription}</p>
-                                <p>{this.state.address}</p>
+                                <div className="text-truncate my-2">{this.stripHtml(this.state.eventTitle)}</div>
+                                <div className="my-2"><i className="fas fa-map-marker-alt"></i>{this.stripHtml(this.state.address) || "Address not available"}</div>
                                 <a className="btn btn-info p-1" href={this.state.url} target="_blank" rel="noopener noreferrer">View</a>
                                 {/* <p>Photos with your Pet for $20.</p>
                                 <p>Photos with your Pet for $40.</p>
@@ -44,8 +55,8 @@ class EventCard extends Component{
                                 <img src={this.state.imgURL} alt="Searched Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 searchedData">
-                                <p className="text-truncate">{this.state.eventDescription}</p>
-                                <p>{this.state.address}</p>
+                                <div className=" my-2 text-truncate">{this.stripHtml(this.state.eventTitle)}</div>
+                                <div className="my-2"><i className="fas fa-map-marker-alt"></i>{this.stripHtml(this.state.address)  || "Address not available"}</div>
                                 <a className="btn btn-info" href={this.state.url} target="_blank" rel="noopener noreferrer">View Event</a>
                             </div>
                         </div>
