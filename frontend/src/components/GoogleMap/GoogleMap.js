@@ -38,12 +38,6 @@ const AnyReactComponent = ({ text, bg_color }) => (
             defaultZoom={this.props.zoom}
             bootstrapURLKeys={{ key: 'AIzaSyBYs1DUU-Za2ZQ7wBu2LIWvdcX4qbeGSvU' }}
           >
-          <AnyReactComponent 
-            lat={37.3352} 
-            lng={-121.8811} 
-            text="T"
-            bg_color='gray' 
-          />
           {map_markers}
         </GoogleMapReact>
       );

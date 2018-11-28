@@ -33,7 +33,14 @@ app.use(function(req, res, next){
 });
 
 // Add middleware for http proxying 
-var apiProxy = proxy('/api/fetch_events', {target: 'http://api.eventful.com/json/events/search'});
+var proxy_options = {
+    target: 'http://api.eventful.com/json/events/search',
+    router: {
+        '/api/fetch_events' :   'http://api.eventful.com/json/events/search',
+        '/events'           :   'http://www.eventful.com/events',
+    }
+}
+var apiProxy = proxy(proxy_options);
 app.use(apiProxy)
 
 //routes
