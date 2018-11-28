@@ -26,7 +26,7 @@ class EventCard extends Component{
                                 <img src={this.state.imgURL} alt="Recommended Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 recommendedData">
-                                <p>{this.state.eventDescription}</p>
+                                <p className="text-truncate">{this.state.eventDescription}</p>
                                 <p>{this.state.address}</p>
                                 <a className="btn btn-info p-1" href={this.state.url} target="_blank" rel="noopener noreferrer">View</a>
                                 {/* <p>Photos with your Pet for $20.</p>
@@ -44,7 +44,7 @@ class EventCard extends Component{
                                 <img src={this.state.imgURL} alt="Searched Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 searchedData">
-                                <p>{this.state.eventDescription}</p>
+                                <p className="text-truncate">{this.state.eventDescription}</p>
                                 <p>{this.state.address}</p>
                                 <a className="btn btn-info" href={this.state.url} target="_blank" rel="noopener noreferrer">View Event</a>
                             </div>

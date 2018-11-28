@@ -24,85 +24,15 @@ class SearchResultPage extends Component{
                                 // {
                                 //     latitude: 37.3352, 
                                 //     longitude: -121.9311,
-                                //     description: "First search result",
+                                //     description: "Placeholder search result",
                                 //     image : {
                                 //         thumb: {
-                                //             url: "thumbnail"
+                                //             url: "./images/loading.gif"
                                 //         }
                                 //     },
                                 //     url: "http://www.eventful.com",
                                 //     venue_address: "Address 1",
                                 //     id: 1,
-                                //     event_type: 'searched'
-                                // }, 
-                                // {
-                                //     latitude: 37.3752, 
-                                //     longitude: -121.8311,
-                                //     description: "Second search result",
-                                //     image : {
-                                //         thumb: {
-                                //             url: "thumbnail"
-                                //         }
-                                //     },
-                                //     url: "http://www.eventful.com",
-                                //     venue_address: "Address 23",
-                                //     id: 23,
-                                //     event_type: 'searched'
-                                // },
-                                // {
-                                //     latitude: 37.3752, 
-                                //     longitude: -121.9311,
-                                //     description: "Third search result",
-                                //     image : {
-                                //         thumb: {
-                                //             url: "thumbnail"
-                                //         }
-                                //     },
-                                //     url: "http://www.eventful.com",
-                                //     venue_address: "Address 3",
-                                //     id: 3,
-                                //     event_type: 'searched'
-                                // },
-                                // {
-                                //     latitude: 37.3052, 
-                                //     longitude: -121.8311,
-                                //     description: "Fourth search result",
-                                //     image : {
-                                //         thumb: {
-                                //             url: "thumbnail"
-                                //         }
-                                //     },
-                                //     url: "http://www.eventful.com",
-                                //     venue_address: "Address 5",
-                                //     id: 5,
-                                //     event_type: 'searched'
-                                // },
-                                // {
-                                //     latitude: 37.2752, 
-                                //     longitude: -121.8311,
-                                //     description: "Fifth search result",
-                                //     image : {
-                                //         thumb: {
-                                //             url: "thumbnail"
-                                //         }
-                                //     },
-                                //     url: "http://www.eventful.com",
-                                //     venue_address: "Address 53",
-                                //     id: 53,
-                                //     event_type: 'searched'
-                                // },
-                                // {
-                                //     latitude: 37.3752, 
-                                //     longitude: -121.6311,
-                                //     description: "Sixth search result",
-                                //     image : {
-                                //         thumb: {
-                                //             url: "thumbnail"
-                                //         }
-                                //     },
-                                //     url: "http://www.eventful.com",
-                                //     venue_address: "Address 21",
-                                //     id: 21,
                                 //     event_type: 'searched'
                                 // }
             ],
@@ -168,8 +98,8 @@ class SearchResultPage extends Component{
         }
     }
 
-    componentWillMount(){
-        this.fetchSearchResults();
+    componentDidMount(){
+            this.fetchSearchResults();
     }
 
     fetchSearchResults(){
@@ -180,7 +110,7 @@ class SearchResultPage extends Component{
                 app_key     : this.state.eventful_api_key,
                 //keywords    : 'books',
                 location    : this.state.city,
-                date        : this.state.startDate + '-' + this.state.endDate || 'Future'
+                date        :  this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'
             }
         })
         .then((response) => {
