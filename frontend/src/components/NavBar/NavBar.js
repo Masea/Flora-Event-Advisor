@@ -31,13 +31,13 @@ handleSignOut(){
 
 startDateChange(date){
     this.setState({
-        startDate: date
+        startDate: date,
     });
 }
 
 endDateChange(date){
     this.setState({
-        endDate: date
+        endDate: date,
     });
 }
 
@@ -69,7 +69,7 @@ onChange(e){
                                         minDate={new Date()}
                                         selectsStart
                                         placeholderText="From Date"
-                                        dateFormat="YYYYMMDD"
+                                        dateFormat="YYYYMMdd"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mx-2'>
@@ -82,7 +82,7 @@ onChange(e){
                                         minDate={this.state.startDate}
                                         selectsEnd
                                         placeholderText="To Date"
-                                        dateFormat="YYYYMMDD"
+                                        dateFormat="YYYYMMdd"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mr-1'>

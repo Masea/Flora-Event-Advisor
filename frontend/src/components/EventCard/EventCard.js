@@ -23,13 +23,16 @@ class EventCard extends Component{
                     <div className='recommended mx-0 bg-white' style={{display: this.props.cardType === 'recommended' ? 'block':'none'}}>
                         <div className='row flex-row'>
                             <div className="col-3 px-0 border-0 align-self-center recommendedImg">
-                                <img src='images/eventImage.jpeg' alt="Recommended Event" className='w-100'/>
+                                <img src={this.state.imgURL} alt="Recommended Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 recommendedData">
-                                <p>Photos with your Pet for $20.</p>
+                                <p>{this.state.eventDescription}</p>
+                                <p>{this.state.address}</p>
+                                <a className="btn btn-info p-1" href={this.state.url} target="_blank" rel="noopener noreferrer">View</a>
+                                {/* <p>Photos with your Pet for $20.</p>
                                 <p>Photos with your Pet for $40.</p>
-                                {/* <p>{this.state.eventTitle}</p><br/>
-                                <p>{this.state.eventCity}</p><br/>*/}
+                                <p>{this.state.eventTitle}</p><br/>
+                                <p>{this.state.eventCity}</p><br/> */}
                             </div>
                         </div>
                     </div>
@@ -43,7 +46,7 @@ class EventCard extends Component{
                             <div className="col-8 pl-2 searchedData">
                                 <p>{this.state.eventDescription}</p>
                                 <p>{this.state.address}</p>
-                                <button className="btn btn-info" href={this.state.url}>View Event</button>
+                                <a className="btn btn-info" href={this.state.url} target="_blank" rel="noopener noreferrer">View Event</a>
                             </div>
                         </div>
                     </div>

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => (
+const AnyReactComponent = ({ text, bg_color }) => (
     <div style={{
       color: 'white', 
-      background: 'grey',
+      background: bg_color,
       padding: '10px 5px',
       display: 'inline-flex',
       textAlign: 'center',
@@ -24,6 +24,14 @@ const AnyReactComponent = ({ text }) => (
     };
   
     render() {
+      let map_markers = this.props.events.map((event) => {
+        return <AnyReactComponent 
+                lat={event.latitude} 
+                lng={event.longitude}
+                text={event.id}
+                bg_color={event.event_type === 'searched' ? '#17A2B8' : '#0168AC'}
+              />
+      });
       return (
         <GoogleMapReact
             defaultCenter={this.props.center}
@@ -32,8 +40,11 @@ const AnyReactComponent = ({ text }) => (
           >
           <AnyReactComponent 
             lat={37.3352} 
-            lng={-121.8811}  
+            lng={-121.8811} 
+            text="T"
+            bg_color='gray' 
           />
+          {map_markers}
         </GoogleMapReact>
       );
     }
