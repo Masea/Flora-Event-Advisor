@@ -2,12 +2,13 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var session = require('express-session');
+const proxy = require('http-proxy-middleware');
 //var cookieParser = require('cookie-parser');
 var cors = require('cors');
 //var mysql = require('mysql');
 
 //use cors for cross origin resourse sharing
-app.use(cors({origin: 'http://localhost:3000', credentials: true}));
+app.use(cors({origin: '*', credentials: true}));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -31,9 +32,11 @@ app.use(function(req, res, next){
     next();
 });
 
+// Add middleware for http proxying 
+var apiProxy = proxy('/api/fetch_events', {target: 'http://api.eventful.com/json/events/search'});
+app.use(apiProxy)
 
 //routes
-
 
 //start the server on port 3001
 app.listen(3001);
