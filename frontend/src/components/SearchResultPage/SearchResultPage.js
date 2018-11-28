@@ -181,9 +181,6 @@ class SearchResultPage extends Component{
                 //keywords    : 'books',
                 location    : this.state.city,
                 date        : this.state.startDate + '-' + this.state.endDate || 'Future'
-            },
-            headers: {
-                'Content-type' : 'text/json'
             }
         })
         .then((response) => {
