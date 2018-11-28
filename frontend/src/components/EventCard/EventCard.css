@@ -15,9 +15,15 @@
 }
 
 .recommended .btn{
-    background-color: #0069AC;
-    border-color: #0069AC;
+    background-color: #FF7F02;
+    border-color: #FF7F02;
     font-size: 0.7rem
+}
+
+.searched .btn{
+    background-color: #600473;
+    border-color: #600473;
+    color: #ffffff
 }
 
 /* .card-event-webkit-scrollbar {

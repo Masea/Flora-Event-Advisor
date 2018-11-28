@@ -49,16 +49,16 @@ onChange(e){
         
         return(
             <div>
-                <nav className ="navbar navbar-expand-md" id="mainNav" >
-                    <div className='navbar-brand'>
-                        <img alt="Flora" src="./images/flora-logo.png" className="align-self-center px-2" height="52px"/>Flora
+                <nav className ="navbar navbar-expand-lg" id="mainNav" >
+                    <div className='navbar-brand text-white'>
+                        <Link to="/"><img alt="Flora" src="./images/flora-logo.png" className="align-self-center px-2" height="52px"/>Flora</Link>
                     </div>
                     <button className="navbar-toggler bg-info" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i className="fas fa-bars text-white"></i>
                     </button>
                     <div className="collapse navbar-collapse"  id="navbarSupportedContent">
-                        <div className="justify-content-center mr-auto">
-                            <form className="form-inline searchForm" >
+                        <div className="flex-fill align-items-center">
+                            <form className="form-inline justify-content-center searchForm" >
                                 <div className='input-group input-group-sm mx-2'>
                                     {/* <input type='date' className='form-control input-sm' name='startDate' placeholder='From' value={this.state.startDate} onChange={this.onChange} /> */}
                                     <DatePicker
@@ -89,31 +89,31 @@ onChange(e){
                                     <input type='search'  className='form-control' name='city' placeholder='City' value={this.state.city} onChange={this.onChange}/>
                                 </div>
                                 <div className='input-group-btn'>                                
-                                    <button type='submit' className='btn btn-outline-info btn-sm' data-effect='ripple'><i className="fas fa-search fa-1x"></i></button>
+                                    <button type='submit' className='btn btn-outline-light btn-sm' data-effect='ripple'><i className="fas fa-search fa-1x"></i></button>
                                 </div>
                             </form>
                         </div>
                            
-                        <div className='ml-auto align-self-center align-items-end'>
+                        <div className='align-self-center align-items-md-end align-items-sm-left'>
                             {/* Logged out NavBar */}
                             <ul className="navbar-nav" style={{display: this.state.isLoggedIn? 'none': 'flex'}}>
-                                <li className="nav-item mx-2">
+                                <li className="nav-item mx-3">
                                     <Link to="/login"><span className='icon-text'><i className="fas fa-sign-in-alt fa-2x"></i><br />Sign In</span></Link>
                                 </li>
-                                <li className="nav-item mx-2">
+                                <li className="nav-item mx-3">
                                     <Link to="/signup"><span className='icon-text'><i className="fas fa-user-plus fa-2x"></i><br />Sign Up</span></Link>
                                 </li>
                             </ul>
 
                             {/* Logged in NavBar */}
                             <ul className='navbar-nav' style={{display: this.state.isLoggedIn? 'flex': 'none'}}>   
-                                <li className="nav-item mx-2">
+                                <li className="nav-item mx-3">
                                     <Link to="/UserProfile"><span className='icon-text'><i className="fas fa-user fa-2x"></i><br />Me</span></Link>
                                 </li>
-                                <li className="nav-item mx-2">
+                                <li className="nav-item mx-3">
                                     <Link to="/SavedEvents"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/>Events</span></Link>
                                 </li>
-                                <li className="nav-item mx-2">
+                                <li className="nav-item mx-3">
                                     <button type="button" className='btn btn-danger' onClick={this.handleSignOut()}>Logout</button>
                                 </li>
                             </ul>

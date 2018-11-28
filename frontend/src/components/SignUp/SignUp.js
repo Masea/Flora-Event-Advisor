@@ -4,6 +4,7 @@ import './Signup.css';
 import axios from 'axios';
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
+import NavBar from '../NavBar/NavBar';
 
 //Define a Login Component
 class Signup extends Component{
@@ -164,6 +165,7 @@ class Signup extends Component{
     
            <div>
                {redirectVar}
+               <NavBar />
                <div className="jumbotron jumbotron-fluid"> 
                {errorlog}
             {/* <div className="container"> */}

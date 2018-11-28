@@ -29,7 +29,7 @@ const AnyReactComponent = ({ text, bg_color }) => (
                 lat={event.latitude} 
                 lng={event.longitude}
                 text={event.event_type === 'recommended' ? 'R' : 'S'}
-                bg_color={event.event_type === 'recommended' ? '#0168AC' : '#17A2B8' }
+                bg_color={event.event_type === 'recommended' ? '#FF7F02' : '#600473' }
               />
       });
       return (

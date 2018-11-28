@@ -7,7 +7,7 @@ body{
     left: 0;
     top: 0;
     /* font-family: "Roboto", "Lato", Arial, "Helvetica Neue", sans-serif; */
-    background-color:#fbf579;
+    background-color:#005995;
     min-height: 52px;
 }
 
@@ -17,14 +17,15 @@ body{
 }
 
 .icon-text{
-    color:#0067ac;
+    color:#cccccc;
     font-size: 0.8rem;
     font-weight: lighter;
     line-height: 1.0; 
 }
 
-.icon-text:hover{
-    color: #004675;
+.icon-text:hover, #mainNav a{
+    color: #ffffff;
+    text-decoration-line: none;
 }
 
 .dropdown-item .navbar-profile-name{

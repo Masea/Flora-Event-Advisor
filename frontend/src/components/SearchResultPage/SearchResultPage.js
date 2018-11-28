@@ -135,7 +135,7 @@ class SearchResultPage extends Component{
 
     render(){
         let searchResults = this.state.searchResults.map( (result) => {
-            return <EventCard cardType="searched" event={result} thumbnail={"./images/loading.gif"}/>
+            return <EventCard cardType="searched" event={result} thumbnail={ "./images/loading.gif"}/>
         });
 
         let recommendedResults = this.state.recommendedResults.map( (result) => {

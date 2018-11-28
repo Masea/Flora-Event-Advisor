@@ -57,7 +57,7 @@ class EventCard extends Component{
                             <div className="col-8 pl-2 searchedData">
                                 <div className=" my-2 text-truncate">{this.stripHtml(this.state.eventTitle)}</div>
                                 <div className="my-2"><i className="fas fa-map-marker-alt"></i>{this.stripHtml(this.state.address)  || "Address not available"}</div>
-                                <a className="btn btn-info" href={this.state.url} target="_blank" rel="noopener noreferrer">View Event</a>
+                                <a className="btn" href={this.state.url} target="_blank" rel="noopener noreferrer">View Event</a>
                             </div>
                         </div>
                     </div>

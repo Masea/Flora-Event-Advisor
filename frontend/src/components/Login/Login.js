@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
+import NavBar from '../NavBar/NavBar';
 
 //Define a Login Component
 class Login extends Component{
@@ -123,6 +124,7 @@ class Login extends Component{
 
         return(
             <div>
+                <NavBar />
              <div className="jumbotron jumbotron-fluid">
              {redirectVar}
             

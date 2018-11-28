@@ -8,6 +8,7 @@ import Artist from "../images/artists.jpg"
 import Athletics from "../images/athletics.jpg"
 import Audi from "../images/auditorium.jpg"
 import Art from "../images/Art-Gallery.jpg"
+import NavBar from '../NavBar/NavBar';
 
 
 //Define a Login Component
@@ -33,7 +34,7 @@ class HomePage extends Component{
     }
     return (
              <div>
-             
+             <NavBar />
              {redirectVar}
             <Carousel  onClickItem={this.handleclicks} infiniteLoop autoPlay interval={1000} showArrows={false} 
             showStatus={false} showIndicators={false} showThumbs={false}>
