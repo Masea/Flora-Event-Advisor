@@ -21,22 +21,7 @@ class SearchResultPage extends Component{
             endDate     : parsed.endDate  || undefined,
             city        : parsed.city  || undefined,
             eventful_api_key    : process.env.EVENTFUL_API_KEY || 'Zdpcf9VpbnwdCxTF',
-            searchResults : [
-                                // {
-                                //     latitude: 37.3352, 
-                                //     longitude: -121.9311,
-                                //     description: "Placeholder search result",
-                                //     image : {
-                                //         thumb: {
-                                //             url: "./images/loading.gif"
-                                //         }
-                                //     },
-                                //     url: "http://www.eventful.com",
-                                //     venue_address: "Address 1",
-                                //     id: 1,
-                                //     event_type: 'searched'
-                                // }
-            ],
+            searchResults : [ ],
             recommendedResults: [
                                 {
                                     latitude: 37.2852, 
