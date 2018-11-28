@@ -1,0 +1,40 @@
+
+
+.profile-form{
+    margin-left:90px;
+}
+
+
+.jumbotron{
+    background-image: url('../images/earth-lights-world41949.jpg');
+    background-attachment: fixed;
+    background-position: center; 
+    background-repeat: no-repeat;
+    
+    text-align: center;
+    min-height: 100vh;
+    padding: top 0;
+    
+}
+
+.main-div {
+    
+    border-radius: 4px;
+    margin: 20px auto 30px;
+    max-width: 100%;
+    max-height: 100%;
+    padding: 60px 70px 70px 71px;
+    border: 1px solid #d4d4d4;
+    background-color: white;
+
+
+
+
+}
+
+
+
+
+
+
+

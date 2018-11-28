@@ -58,7 +58,7 @@ onChange(e){
                     </button>
                     <div className="collapse navbar-collapse"  id="navbarSupportedContent">
                         <div className="flex-fill align-items-center">
-                            <form className="form-inline justify-content-center searchForm" >
+                            <form className="form-inline justify-content-center searchForm" action="./searchResultPage">
                                 <div className='input-group input-group-sm mx-2'>
                                     {/* <input type='date' className='form-control input-sm' name='startDate' placeholder='From' value={this.state.startDate} onChange={this.onChange} /> */}
                                     <DatePicker
