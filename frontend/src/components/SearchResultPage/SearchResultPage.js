@@ -16,6 +16,7 @@ class SearchResultPage extends Component{
         const parsed = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
 
         this.state = {
+            isLoading:  false,
             startDate   : parsed.startDate || undefined,
             endDate     : parsed.endDate  || undefined,
             city        : parsed.city  || undefined,
@@ -98,13 +99,15 @@ class SearchResultPage extends Component{
         }
     }
 
-    componentDidMount(){
+    componentWillMount(){
             this.fetchSearchResults();
     }
 
     fetchSearchResults(){
         console.log("Fetching search results");
-        document.getElementById("loadingDiv").style.setProperty('display', 'flex');
+        this.setState({
+            isLoading: true,
+        });
         axios.get('http://localhost:3001/api/fetch_events' , {
             params: {
                 app_key     : this.state.eventful_api_key,
@@ -115,8 +118,6 @@ class SearchResultPage extends Component{
         })
         .then((response) => {
             console.log(response.data);
-            document.getElementById("loadingDiv").style.setProperty('display', 'none');
-            document.getElementById("search-results").style.setProperty('display', 'block');
             if(response.data.total_items > 0){
                 this.setState({
                     searchResults   : response.data.events.event,
@@ -124,14 +125,17 @@ class SearchResultPage extends Component{
             }
         })
         .catch( (error) => {
-            document.getElementById("loadingDiv").style.setProperty('display', 'none');
-            document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+            //document.getElementById("loadingDiv").style.setProperty('display', 'none');
+            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+        });
+        this.setState({
+            isLoading: false
         });
     }
 
     render(){
         let searchResults = this.state.searchResults.map( (result) => {
-            return <EventCard cardType="searched" event={result} description={result.description} id={result.id} thumbnail={result.image.thumb.url} venue_address={result.venue_address} url={result.url}/>
+            return <EventCard cardType="searched" event={result} thumbnail={"./images/loading.gif"}/>
         });
 
         let recommendedResults = this.state.recommendedResults.map( (result) => {
@@ -161,10 +165,10 @@ class SearchResultPage extends Component{
                             <br />
                             <div className="container-fluid">
                                 <h5>Search Results</h5>
-                                <div id="loadingDiv" style={{display: 'none'}}>
+                                <div id="loadingDiv" style={{display: this.state.isLoading ? 'block' : 'none'}}>
                                     <img src="./images/loading.gif" alt="loading"/>
                                 </div>
-                                <div className='d-flex flex-column flex-nowrap searched-results' id="search-results" style={{display: 'none'}}>
+                                <div className='d-flex flex-column flex-nowrap searched-results' id="search-results" style={{display: this.state.isLoading ? 'none' : 'flex'}}>
                                     {searchResults}
                                 </div>
                             </div>

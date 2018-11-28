@@ -6,11 +6,11 @@ class EventCard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            eventTitle          : 'Test Event',
-            eventDescription    : this.props.description || 'This is a test event description',
+            eventTitle          : this.props.event.title || 'Test Event',
+            eventDescription    : this.props.event.description || 'This is a test event description',
             imgURL              : this.props.thumbnail || '',
-            address             : this.props.venue_address || '',
-            url                 : this.props.url || '',
+            address             : this.props.event.venue_address || '',
+            url                 : this.props.event.url || '',
         }
     }
 
