@@ -16,6 +16,7 @@ class NavBar extends Component {
         startDate: undefined,
         endDate: undefined,
         city: undefined,
+        homeredirect : false,
         //adding event search
        event: undefined,
 
@@ -34,6 +35,10 @@ handleSignOut = () => {
 
     //e.preventDefault();
     console.log("You will be logged out");
+    cookie.remove('cookie', { path: '/' })
+    console.log("Signed out ", cookie.load('cookie'));
+    this.setState({homeredirect:true}); 
+    //<Redirect to="/home"/>
     
 }
 
@@ -54,11 +59,41 @@ onChange(e){
 }
 
     render() {
+        let navLogin = null;
+        let redirecVar = null;
+        let  cookieVal= cookie.load('cookie');
+        console.log("cookieVal", cookie.load('cookie'));
+        if(this.state.homeredirect){
+            redirecVar = <Redirect to="/HomePage"/>
+        }
 
+        if(cookieVal){
+      
+            console.log("Able to read cookie",cookie.load('cookie'));
+            navLogin =
+                         <li className="nav-item mx-3">
+                            <button type="button" className='btn btn-danger' onClick={this.handleSignOut}>Logout</button>
+                        </li>
+               
+        }
+        
+        else{
+        //Else display login button
+        console.log("Not Able to read cookie",cookie.load('cookie'));
+        navLogin = 
+    
+                <li className="nav-item mx-3"><Link to="/login">
+                <button type="button" className='btn btn-danger'>Login</button>
+                </Link>
+            </li>
+              
+            
+        }
 
         
         return(
             <div>
+                {redirecVar}
                 <nav className ="navbar navbar-expand-lg" id="mainNav" >
                     <div className='navbar-brand text-white'>
                         <Link to="/"><img alt="Flora" src="./images/flora-logo.png" className="align-self-center px-2" height="52px"/>Flora</Link>
@@ -79,7 +114,7 @@ onChange(e){
                                         minDate={new Date()}
                                         selectsStart
                                         placeholderText="From Date"
-                                        //dateFormat="YYYY/MM/DD"
+                                        //dateFormat="MM/DD/YY"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mx-2'>
@@ -92,7 +127,7 @@ onChange(e){
                                         minDate={this.state.startDate}
                                         selectsEnd
                                         placeholderText="To Date"
-                                        //dateFormat="YYYY/MM/DD"
+                                        //dateFormat="MM/DD/YY"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mr-1'>
@@ -128,9 +163,9 @@ onChange(e){
                                 <li className="nav-item mx-3">
                                     <Link to="/SavedEvents"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/>Events</span></Link>
                                 </li>
-                                <li className="nav-item mx-3">
-                                    <button type="button" className='btn btn-danger' onClick={this.handleSignOut()}>Logout</button>
-                                </li>
+                               
+                                {navLogin}
+
                             </ul>
                         </div>
                     </div>                  
