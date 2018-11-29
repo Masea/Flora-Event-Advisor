@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import './NavBar.css';
+import cookie from 'react-cookies';
 import {Link, Redirect} from 'react-router-dom';
 
 import DatePicker from "react-datepicker";
@@ -15,18 +16,25 @@ class NavBar extends Component {
         startDate: undefined,
         endDate: undefined,
         city: undefined,
+        //adding event search
+       event: undefined,
+
     }
     this.onChange   = this.onChange.bind(this);
     this.startDateChange   = this.startDateChange.bind(this);
     this.endDateChange   = this.endDateChange.bind(this);
 
+   //this.eventChange  = this.eventChange.bind(this);
+
     this.handleSignOut = this.handleSignOut.bind(this);
 
 }
 
-handleSignOut(){
+handleSignOut = () => {
+
     //e.preventDefault();
     console.log("You will be logged out");
+    
 }
 
 startDateChange(date){
@@ -46,6 +54,8 @@ onChange(e){
 }
 
     render() {
+
+
         
         return(
             <div>
@@ -69,7 +79,7 @@ onChange(e){
                                         minDate={new Date()}
                                         selectsStart
                                         placeholderText="From Date"
-                                        dateFormat="YYYYMMdd"
+                                        dateFormat="MM/DD/YY"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mx-2'>
@@ -82,12 +92,17 @@ onChange(e){
                                         minDate={this.state.startDate}
                                         selectsEnd
                                         placeholderText="To Date"
-                                        dateFormat="YYYYMMdd"
+                                        dateFormat="MM/DD/YY"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mr-1'>
                                     <input type='search'  className='form-control' name='city' placeholder='City' value={this.state.city} onChange={this.onChange}/>
                                 </div>
+
+                                <div className='input-group input-group-sm mr-1'>
+                                    <input type='search'  className='form-control' name='event' placeholder='Event Type' value={this.state.event} onChange={this.onChange}/>
+                                </div>
+
                                 <div className='input-group-btn'>                                
                                     <button type='submit' className='btn btn-outline-light btn-sm' data-effect='ripple'><i className="fas fa-search fa-1x"></i></button>
                                 </div>

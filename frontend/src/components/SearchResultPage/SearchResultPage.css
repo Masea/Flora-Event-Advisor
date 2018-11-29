@@ -3,10 +3,12 @@
     min-height      : 100%;
     width           : 100%;
     background-image: linear-gradient(to right, #fbf9fc,#fdfff4,#f2fffd,#f8f4ff,#edfeff,#fdedff);
+    margin-left: 1px;
 }
 
 .search-result-map{
     height   : calc(100vh - 78px);
+    
 }
 
 .results{

@@ -5,7 +5,7 @@ import EventCard from '../EventCard/EventCard';
 import NavBar from '../NavBar/NavBar';
 import axios from 'axios';
 import * as qs from 'query-string';
-// import cookie from 'react-cookies';
+import cookie from 'react-cookies';
 // import {Redirect} from 'react-router';
 
 class SearchResultPage extends Component{
@@ -20,6 +20,7 @@ class SearchResultPage extends Component{
             startDate   : parsed.startDate || undefined,
             endDate     : parsed.endDate  || undefined,
             city        : parsed.city  || undefined,
+            event       : parsed.event || undefined,
             eventful_api_key    : process.env.EVENTFUL_API_KEY || 'Zdpcf9VpbnwdCxTF',
             searchResults : [
                                 // {
@@ -111,7 +112,7 @@ class SearchResultPage extends Component{
         axios.get('http://localhost:3001/api/fetch_events' , {
             params: {
                 app_key     : this.state.eventful_api_key,
-                //keywords    : 'books',
+                keywords    : this.state.event,
                 location    : this.state.city,
                 date        :  this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'
             }

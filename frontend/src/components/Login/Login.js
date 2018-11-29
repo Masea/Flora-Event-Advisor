@@ -64,6 +64,8 @@ class Login extends Component{
                     this.setState({
                         errorFlag : false
                     });
+                    
+                    
                     console.log("Login Request Completed");
                 }else{
                     
@@ -112,7 +114,8 @@ class Login extends Component{
         let errorlog = null;
         if(cookie.load('cookie')){
             console.log("Valid Cookie, Redirect to Home");
-            redirectVar = <Redirect to= "/home"/>
+            redirectVar = <Redirect to= "/SearchResultPage"/>
+           
         }
         if(this.state.errorFlag){
 

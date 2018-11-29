@@ -86,13 +86,13 @@ class Signup extends Component{
             lastname : this.state.lastname,
             email : this.state.email,
             password : this.state.password,
-            role : this.state.role
+            
         }
-        console.log("Register Request Data", data);
+        console.log("Signup Request Data", data);
         //set the with credentials to true
         axios.defaults.withCredentials = true;
         //make a post request with the user data
-        axios.post('http://localhost:3001/register',data)
+        axios.post('http://localhost:3001/signup',data)
             .then(response => {
                 console.log("Status Code : ",response.status);
                 if(response.status === 200){
@@ -143,7 +143,7 @@ class Signup extends Component{
         let redirectVar = null;
         let errorlog = null;
         if(this.state.registerflag){
-            //console.log("Valid Cookie, Redirect to Home");
+            console.log("Valid Cookie, Redirect to Home");
             redirectVar = <Redirect to= "/login"/>
         }
         
