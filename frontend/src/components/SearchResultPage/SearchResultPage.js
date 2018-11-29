@@ -121,11 +121,23 @@ class SearchResultPage extends Component{
 
     render(){
         let searchResults = this.state.searchResults.map( (result) => {
-            return <EventCard cardType="searched" event={result} thumbnail={ "./images/loading.gif"}/>
+            return <EventCard 
+                        cardType="searched" 
+                        event={result} 
+                        thumbnail={ "./images/loading.gif"}
+                    />
         });
 
         let recommendedResults = this.state.recommendedResults.map( (result) => {
-            return <EventCard cardType="recommended" event={result} description={result.description} id={result.id} thumbnail={result.image.thumb.url} venue_address={result.venue_address} url={result.url}/>
+            return <EventCard 
+                        cardType="recommended" 
+                        event={result} 
+                        description={result.description} 
+                        id={result.id} 
+                        thumbnail={result.image.thumb.url} 
+                        venue_address={result.venue_address} 
+                        url={result.url}
+                    />
         });
         return(
             <div>
@@ -134,18 +146,16 @@ class SearchResultPage extends Component{
                     <div className='container w-100 p-0'>
                     <div className='row justify-content-center'>
                         <div className='search-result-map col-md-7 col-sm-12 col-lg-7' id='locationMap'>
-                            <SimpleMap events={this.state.searchResults.concat( this.state.recommendedResults )}/>
+                            <SimpleMap 
+                                events={this.state.searchResults.concat( this.state.recommendedResults )}
+                            />
                            
                         </div>
                         <div className='results col-12 col-md-5 col-sm-12 col-lg-5'>
                             <h5>Recommended for you</h5>
                             <div className="container-fluid">
                                 <div className='d-flex flex-row flex-nowrap result-carousel'> 
-                                    {recommendedResults}                                
-                                    {/* <EventCard cardType = 'recommended' eventid='1'/>
-                                    <EventCard cardType = 'recommended' eventid='1'/>
-                                    <EventCard cardType = 'recommended' eventid='1'/> */}
-
+                                    {recommendedResults}
                                 </div>
                             </div>
                             <br />
