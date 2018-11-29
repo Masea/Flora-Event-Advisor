@@ -79,7 +79,7 @@ onChange(e){
                                         minDate={new Date()}
                                         selectsStart
                                         placeholderText="From Date"
-                                        dateFormat="MM/DD/YY"
+                                        //dateFormat="YYYY/MM/DD"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mx-2'>
@@ -92,7 +92,7 @@ onChange(e){
                                         minDate={this.state.startDate}
                                         selectsEnd
                                         placeholderText="To Date"
-                                        dateFormat="MM/DD/YY"
+                                        //dateFormat="YYYY/MM/DD"
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mr-1'>
