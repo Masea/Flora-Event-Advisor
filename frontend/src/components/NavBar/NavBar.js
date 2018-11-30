@@ -135,7 +135,7 @@ onChange(e){
                                 </div>
 
                                 <div className='input-group input-group-sm mr-1'>
-                                    <input type='search'  className='form-control' name='event' placeholder='Event Type' value={this.state.event} onChange={this.onChange}/>
+                                    <input type='search'  className='form-control' name='event' placeholder='Keywords' value={this.state.event} onChange={this.onChange}/>
                                 </div>
 
                                 <div className='input-group-btn'>                                

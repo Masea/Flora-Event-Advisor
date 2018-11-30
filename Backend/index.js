@@ -151,7 +151,7 @@ app.post('/signup',function(req,res){
     
     
     Profiles.findOne({
-        username:username, username:categories
+        username:username
     }, function(err,user){
         if (err) {
               
@@ -265,10 +265,10 @@ app.get('/api/get-recommendations', (req, res) => {
     });
 
     var recommendedResults;
-    recommender.recommend(userCategories, searchResults, function (response) {
-        recommendedResults = response;    
-        console.log("Recommendation results: ", recommendedResults);
-        });
+    //recommender.recommend(userCategories, searchResults, function (response) {
+     //   recommendedResults = response;    
+       // console.log("Recommendation results: ", recommendedResults);
+       // });
 
     res.send( { recommendedResults }
     //`I received your POST request. This is what you sent me: ${req.body.post}`,

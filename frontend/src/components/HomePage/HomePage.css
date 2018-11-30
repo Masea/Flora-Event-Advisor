@@ -10,13 +10,14 @@
   }
 
   .imagestyle h1 {
-      position:relative;
-      margin-top: 300px;
-      margin-left: 600px;
-      color: azure;
-      text-align: center;
-      background-color: rgb(1, 1, 12);
-      max-width: 250px;
-      padding:10px;
-     
-  }
+    position:relative;
+    margin-top: 300px;
+    margin-left: 500px;
+    color: white;
+    text-align: center;
+    background-color:lightslategray;
+    max-width: 350px;
+    padding:10px;
+    font-size: 60px;
+    font-style: italic;
+}
