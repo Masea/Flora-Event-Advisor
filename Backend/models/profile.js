@@ -46,6 +46,9 @@ var Profiles = mongoose.model('Profiles',{
     password : {
         type : String
     },
+    categories : {
+        type: Array
+    }
 
 });
 

@@ -8,6 +8,9 @@ var cors = require('cors');
 var {Profiles} = require('./models/profile');
 //var mysql = require('mysql');
 
+var recommender = require('./recommender');
+var request = require('request');
+
 var crypt = require('./crypt');
 var {mongoose} = require('./mongoose');
 //var pool = require('./pool');
@@ -189,17 +192,95 @@ app.post('/signup',function(req,res){
 
 });
 
+// Recommendation api
+app.get('/api/get-recommendations', (req, res) => {
+    console.log(req.body);
+    console.log("Inside recommender");
+    
+    //var username = req.body.username;
+    var app_key = req.body.app_key;
+    var keywords = req.body.keywords;
+    var location = req.body.location;
+    var date = req.body.date;
+    
+    // get user favorite cetegories array from db
+    Profiles.findOne({
+        username:username
+    }, function(err,user){
+        if (err) {   
+            res.code = "400";
+            res.value = "Something happened. Try Again !!";
+            console.log(res.value);
+            res.sendStatus(400).end();
+        } else if(user){
+            res.code = "406";
+            res.value = "Username already exist. Try Again !!";
+            console.log(res.value);
+            res.sendStatus(406).end();
+        }  
+        else{
+            console.log("User not found, Create a new profile")
+            profile.save().then((profile)=>{
+                console.log("User created : ",profile);
+                res.sendStatus(200).end();
+            },(error)=>{
+                console.log("Error Creating User");
+                res.sendStatus(400).end();
+            })
+        }          
+    })  
 
-        
-        
-       
+    // get data from eventful api
+    <script type="text/javascript" src="http://api.eventful.com/js/api/json"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    const APP_KEY = "57VcTrmddt9v2nbJ";
+    var oArgs = {
+          app_key: APP_KEY,
+          q: "music",
+          where: "New York", 
+          "date": "2018102700-2018102800",
+          page_size: 10,
+          sort_order: "popularity",
+       };
 
+    var searchResults = [];
+    EVDB.API.call("http://api.eventful.com/js/api/json/events/search/events/search", oArgs, function(oData) {
+      // Note: this relies on the custom toString() methods below
+      //var dt = jQuery.parseJSON(oData);
+      if (oData.events.event != null)
+      {
+        searchResults = oData.events.event;
+      }
+
+    });
+    
+    /*request('http://api.eventful.com/js/api/json/events/search', function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        console.log(body) // Show the HTML for the Google homepage. 
+      }
+    });*/
+
+    var recommendedResults;
+    recommender.recommend(userCategories, searchResults, function (response) {
+        recommendedResults = response;    
+        console.log("Recommendation results: ", recommendedResults);
+        });
+
+    res.send( { recommendedResults }
+    //`I received your POST request. This is what you sent me: ${req.body.post}`,
+    );
+});
+
+app.get('/api/get-recommendations', (req, res) => {
+  res.send({ express: 'Hello From Express' }/*recommendedResults*/);
+});
+        
 
 //Add middleware for http proxying 
 var proxy_options = {
-    target: 'http://api.eventful.com/json/events/search',
+    target: 'http://api.eventful.com/json/events/search', // http://api.eventful.com/js/api/json/events/search
     router: {
-        '/api/fetch_events' :   'http://api.eventful.com/json/events/search',
+        '/api/fetch_events' :   'http://api.eventful.com/json/events/search', 
         '/events'           :   'http://www.eventful.com/events',
     }
 }
