@@ -40,39 +40,4 @@ recommender.recommend = function(userId, userCategories, eventData, successCallb
     */
 }
 
-/* 
-// EvenfulAPI categories
-var categorieIds = [
-//             "music",
-//             "conference",
-//             "comedy",
-//             "learning_education",
-//             "family_fun_kids",
-//             "festivals_parades",
-//             "movies_film",
-//             "food",
-//             "fundraisers",
-//             "art",
-//             "support",
-//             "holiday",
-//             "books",
-//             "attractions",
-//             "community",
-//             "business",
-//             "singles_social",
-//             "schools_alumni",
-//             "clubs_associations",
-//             "outdoors_recreation",
-//             "performing_arts",
-//             "animals",
-//             "politics_activism",
-//             "sales",
-//             "science",
-//             "religion_spirituality",
-//             "sports",
-//             "technology",
-//             "other"
-//         ];
-*/
-
 module.exports = recommender;
