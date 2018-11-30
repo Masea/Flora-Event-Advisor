@@ -36,7 +36,7 @@ class HomePage extends Component{
              <div>
              <NavBar />
              {redirectVar}
-            <Carousel  onClickItem={this.handleclicks} infiniteLoop autoPlay interval={1000} showArrows={false} 
+            <Carousel  onClickItem={this.handleclicks} infiniteLoop autoPlay interval={3000} showArrows={false} 
             showStatus={false} showIndicators={false} showThumbs={false}>
             
             <div className="imagestyle" style={{backgroundImage:`url(${Artist})`}}>

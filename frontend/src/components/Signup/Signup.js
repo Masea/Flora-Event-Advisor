@@ -61,48 +61,13 @@ class Signup extends Component{
         }
         //Bind the handlers to this class
         this.changeHandler = this.changeHandler.bind(this);
-        // this.firstnameChangeHandler = this.firstnameChangeHandler.bind(this);
-        // this.lastnameChangeHandler = this.lastnameChangeHandler.bind(this);
-        // this.passwordChangeHandler = this.passwordChangeHandler.bind(this);
         
-        // this.submitRegister = this.submitRegister.bind(this);
     }
-    //Call the Will Mount to set the auth Flag to false
-    // componentWillMount(){
-    //     this.setState({
-    //         authFlag : false
-    //     })
-    // }
-    // //username change handler to update state variable with the text entered by the user
-    // firstnameChangeHandler = (e) => {
-    //     this.setState({
-    //         firstname : e.target.value,
-    //         errorflag : false,
-            
-    //     })
-    // }
+  
 
         
-    // lastnameChangeHandler = (e) => {
-    //     this.setState({
-    //         lastname : e.target.value,
-    //         errorflag : false,
-    //     })
-    // }
-    // //email change handler to update state variable with the text entered by the user
-    // emailChangeHandler = (e) => {
-    //     this.setState({
-    //         email : e.target.value,
-    //         errorflag : false,
-    //     })
-    // }
-    // //password change handler to update state variable with the text entered by the user
-    // passwordChangeHandler = (e) => {
-    //     this.setState({
-    //         password : e.target.value,
-    //         errorflag : false,
-    //     })
-    // }
+   
+  
     
     handleChange = name => value => {
     
