@@ -87,7 +87,7 @@ class SearchResultPage extends Component{
 
     componentWillMount(){
             this.fetchSearchResults();
-            //this.getRecommendations();
+            this.getRecommendations();
     }
 
     getRecommendations()
@@ -98,7 +98,7 @@ class SearchResultPage extends Component{
         });
         axios.get('http://localhost:3001/api/get-recommendations' , {
             params: {   
-                //username    : username,
+                username    : "Masi",
                 app_key     : this.state.eventful_api_key,
                 keywords    : this.state.event,
                 location    : this.state.city,

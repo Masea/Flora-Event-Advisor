@@ -151,7 +151,7 @@ app.post('/signup',function(req,res){
     
     
     Profiles.findOne({
-        username:username
+        username:username, username:categories
     }, function(err,user){
         if (err) {
               
@@ -197,12 +197,13 @@ app.get('/api/get-recommendations', (req, res) => {
     console.log(req.body);
     console.log("Inside recommender");
     
-    //var username = req.body.username;
+    var username = req.body.username;
     var app_key = req.body.app_key;
     var keywords = req.body.keywords;
     var location = req.body.location;
     var date = req.body.date;
     
+    /*
     // get user favorite cetegories array from db
     Profiles.findOne({
         username:username
@@ -228,11 +229,12 @@ app.get('/api/get-recommendations', (req, res) => {
                 res.sendStatus(400).end();
             })
         }          
-    })  
+    })  */
 
     // get data from eventful api
-    <script type="text/javascript" src="http://api.eventful.com/js/api/json"></script>
+    /*<script type="text/javascript" src="http://api.eventful.com/js/api/json"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    */
     const APP_KEY = "57VcTrmddt9v2nbJ";
     var oArgs = {
           app_key: APP_KEY,
@@ -244,7 +246,7 @@ app.get('/api/get-recommendations', (req, res) => {
        };
 
     var searchResults = [];
-    EVDB.API.call("http://api.eventful.com/js/api/json/events/search/events/search", oArgs, function(oData) {
+    /*EVDB.API.call("http://api.eventful.com/js/api/json/events/search/events/search", oArgs, function(oData) {
       // Note: this relies on the custom toString() methods below
       //var dt = jQuery.parseJSON(oData);
       if (oData.events.event != null)
@@ -252,13 +254,15 @@ app.get('/api/get-recommendations', (req, res) => {
         searchResults = oData.events.event;
       }
 
-    });
+    });*/
     
-    /*request('http://api.eventful.com/js/api/json/events/search', function (error, response, body) {
+    var url = 'http://api.eventful.com/api/json/events/search';
+    url += oArgs
+    request('http://api.eventful.com/api/json/events/search', function (error, response, body) {
       if (!error && response.statusCode == 200) {
         console.log(body) // Show the HTML for the Google homepage. 
       }
-    });*/
+    });
 
     var recommendedResults;
     recommender.recommend(userCategories, searchResults, function (response) {
@@ -269,10 +273,6 @@ app.get('/api/get-recommendations', (req, res) => {
     res.send( { recommendedResults }
     //`I received your POST request. This is what you sent me: ${req.body.post}`,
     );
-});
-
-app.get('/api/get-recommendations', (req, res) => {
-  res.send({ express: 'Hello From Express' }/*recommendedResults*/);
 });
         
 
