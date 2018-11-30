@@ -87,6 +87,61 @@ class SearchResultPage extends Component{
 
     componentWillMount(){
             this.fetchSearchResults();
+            //this.getRecommendations();
+    }
+
+    getRecommendations()
+    {
+        console.log("Fetching recommendations");
+        this.setState({
+            isLoading: true,
+        });
+        axios.get('http://localhost:3001/api/get-recommendations' , {
+            params: {   
+                //username    : username,
+                app_key     : this.state.eventful_api_key,
+                keywords    : this.state.event,
+                location    : this.state.city,
+                date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'           
+            }
+        })
+        .then((response) => {
+            console.log(JSON.stringify(response));
+            if(response.count > 0){
+                this.setState({
+                    recommendationResults   : response.data,
+                });
+            }
+        })
+        .catch( (error) => {
+            //document.getElementById("loadingDiv").style.setProperty('display', 'none');
+            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+        });
+
+        axios.get('http://localhost:3001/api/fetch_events' , {
+            params: {
+                app_key     : this.state.eventful_api_key,
+                keywords    : this.state.event,
+                location    : this.state.city,
+                date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future',
+            }
+        })
+        .then((response) => {
+            console.log(JSON.stringify(response.data.event));
+            if(response.data.total_items > 0){
+                this.setState({
+                    searchResults   : response.data.events.event,
+                });
+            }
+        })
+        .catch( (error) => {
+            //document.getElementById("loadingDiv").style.setProperty('display', 'none');
+            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+        });
+        this.setState({
+            isLoading: false
+        });
+
     }
 
     fetchSearchResults(){
@@ -99,11 +154,11 @@ class SearchResultPage extends Component{
                 app_key     : this.state.eventful_api_key,
                 keywords    : this.state.event,
                 location    : this.state.city,
-                date        :  this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'
+                date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future',
             }
         })
         .then((response) => {
-            console.log(response.data);
+            console.log(JSON.stringify(response.data.event));
             if(response.data.total_items > 0){
                 this.setState({
                     searchResults   : response.data.events.event,
@@ -120,13 +175,15 @@ class SearchResultPage extends Component{
     }
 
     render(){
+        
         let searchResults = this.state.searchResults.map( (result) => {
             return <EventCard cardType="searched" event={result} thumbnail={ "./images/loading.gif"}/>
         });
 
-        let recommendedResults = this.state.recommendedResults.map( (result) => {
-            return <EventCard cardType="recommended" event={result} description={result.description} id={result.id} thumbnail={result.image.thumb.url} venue_address={result.venue_address} url={result.url}/>
+        let recommendedResults = this.state.recommendedResults.map( (event) => {
+            return <EventCard cardType="recommended" event={event} />
         });
+
         return(
             <div>
                 <NavBar/>
@@ -138,14 +195,10 @@ class SearchResultPage extends Component{
                            
                         </div>
                         <div className='results col-12 col-md-5 col-sm-12 col-lg-5'>
-                            <h5>Recommended for you</h5>
                             <div className="container-fluid">
+                            <h5>Recommended for you</h5>
                                 <div className='d-flex flex-row flex-nowrap result-carousel'> 
                                     {recommendedResults}                                
-                                    {/* <EventCard cardType = 'recommended' eventid='1'/>
-                                    <EventCard cardType = 'recommended' eventid='1'/>
-                                    <EventCard cardType = 'recommended' eventid='1'/> */}
-
                                 </div>
                             </div>
                             <br />

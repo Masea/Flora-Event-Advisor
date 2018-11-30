@@ -11,6 +11,9 @@ class EventCard extends Component{
             imgURL              : this.props.thumbnail || '',
             address             : this.props.event.venue_address || '',
             url                 : this.props.event.url || '',
+            startDate           : this.props.event.startDate || '',
+            stopDate            : this.props.event.startDate || '',
+            category            : this.props.event.category || ''
         }
 
         this.stripHtml = this.stripHtml.bind(this);
