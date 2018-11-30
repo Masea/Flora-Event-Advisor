@@ -1,0 +1,11 @@
+.tooltip-info{
+    background-color: #025a99;
+    color: #ffffff;
+    margin-top: -110px;
+    min-height: 60px;
+    min-width: 150px;
+    padding: 5px;
+    border-radius: 5px 5px 5px 0px;
+    z-index: 10000000;    
+    position: relative;
+}
