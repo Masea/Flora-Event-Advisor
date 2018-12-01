@@ -74,7 +74,6 @@ app.post('/login',function(req,res){
             
             res.cookie('cookie',user.username,{maxAge: 900000, httpOnly: false, path : '/'});
             req.session.user = user;
-            res.cookie('name', user.firstname + ' ' +user.lastname,{maxAge: 900000, httpOnly: false, path : '/'}); //added this for reading Name from the cookie --Aprajita
             res.status(200).json({
                 
                 user:user.username ,

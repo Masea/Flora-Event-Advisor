@@ -88,6 +88,7 @@ class UserProfile extends Component{
                 document.getElementById("success_snackbar").style.setProperty('display', 'block'); 
                 setTimeout(() => {
                     document.getElementById("success_snackbar").style.setProperty('display', 'none');
+                    
                 }, 10000);              
             }
             else{

@@ -12,7 +12,7 @@ class NavBar extends Component {
     constructor(props){
         super(props);
     this.state = {
-        isLoggedIn: true,
+        isLoggedIn: false,
         startDate: undefined,
         endDate: undefined,
         city: undefined,
@@ -21,75 +21,56 @@ class NavBar extends Component {
        event: undefined,
 
     }
+
+    if(cookie.load('name')){
+        this.setState({
+            isLoggedIn: true,
+        })
+    }
+
     this.onChange   = this.onChange.bind(this);
     this.startDateChange   = this.startDateChange.bind(this);
     this.endDateChange   = this.endDateChange.bind(this);
 
    //this.eventChange  = this.eventChange.bind(this);
-
     this.handleSignOut = this.handleSignOut.bind(this);
+    }
 
-}
+    handleSignOut = () => {
 
-handleSignOut = () => {
+        //e.preventDefault();
+        console.log("You will be logged out");
+        cookie.remove('cookie', { path: '/' })
+        this.setState({
+            isLoggedIn: false
+        });
+        console.log("Signed out ", cookie.load('cookie'));
+        this.setState({homeredirect:true});         
+    }
 
-    //e.preventDefault();
-    console.log("You will be logged out");
-    cookie.remove('cookie', { path: '/' })
-    console.log("Signed out ", cookie.load('cookie'));
-    this.setState({homeredirect:true}); 
-    //<Redirect to="/home"/>
-    
-}
+    startDateChange(date){
+        this.setState({
+            startDate: date,
+        });
+    }
 
-startDateChange(date){
-    this.setState({
-        startDate: date,
-    });
-}
+    endDateChange(date){
+        this.setState({
+            endDate: date,
+        });
+    }
 
-endDateChange(date){
-    this.setState({
-        endDate: date,
-    });
-}
-
-onChange(e){
-    this.setState({[e.target.name]: e.target.value});
-}
+    onChange(e){
+        this.setState({[e.target.name]: e.target.value});
+    }
 
     render() {
-        let navLogin = null;
         let redirecVar = null;
-        let  cookieVal= cookie.load('cookie');
+        let loggedIn = cookie.load('cookie');
         console.log("cookieVal", cookie.load('cookie'));
         if(this.state.homeredirect){
             redirecVar = <Redirect to="/HomePage"/>
         }
-
-        if(cookieVal){
-      
-            console.log("Able to read cookie",cookie.load('cookie'));
-            navLogin =
-                         <li className="nav-item mx-3">
-                            <button type="button" className='btn btn-danger' onClick={this.handleSignOut}>Logout</button>
-                        </li>
-               
-        }
-        
-        else{
-        //Else display login button
-        console.log("Not Able to read cookie",cookie.load('cookie'));
-        navLogin = 
-    
-                <li className="nav-item mx-3"><Link to="/login">
-                <button type="button" className='btn btn-danger'>Login</button>
-                </Link>
-            </li>
-              
-            
-        }
-
         
         return(
             <div>
@@ -146,7 +127,7 @@ onChange(e){
                            
                         <div className='align-self-center align-items-md-end align-items-sm-left'>
                             {/* Logged out NavBar */}
-                            <ul className="navbar-nav" style={{display: this.state.isLoggedIn? 'none': 'flex'}}>
+                            <ul className="navbar-nav" style={{display: loggedIn? 'none': 'flex'}}>
                                 <li className="nav-item mx-3">
                                     <Link to="/login"><span className='icon-text'><i className="fas fa-sign-in-alt fa-2x"></i><br />Sign In</span></Link>
                                 </li>
@@ -156,16 +137,16 @@ onChange(e){
                             </ul>
 
                             {/* Logged in NavBar */}
-                            <ul className='navbar-nav' style={{display: this.state.isLoggedIn? 'flex': 'none'}}>   
+                            <ul className='navbar-nav' style={{display: loggedIn? 'flex': 'none'}}>   
                                 <li className="nav-item mx-3">
                                     <Link to="/UserProfile"><span className='icon-text'><i className="fas fa-user fa-2x"></i><br />Me</span></Link>
                                 </li>
                                 <li className="nav-item mx-3">
                                     <Link to="/SavedEvents"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/>Events</span></Link>
                                 </li>
-                               
-                                {navLogin}
-
+                                <li className="nav-item mx-3">
+                                    <button type="button" className='btn btn-danger' onClick={this.handleSignOut}>Logout</button>
+                                </li>
                             </ul>
                         </div>
                     </div>                  
@@ -183,8 +164,6 @@ onChange(e){
             </div>
         );
     }
-
-
 }
 
 export default NavBar;
