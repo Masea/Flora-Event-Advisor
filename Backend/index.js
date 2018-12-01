@@ -74,6 +74,7 @@ app.post('/login',function(req,res){
             
             res.cookie('cookie',user.username,{maxAge: 900000, httpOnly: false, path : '/'});
             req.session.user = user;
+            res.cookie('name', user.firstname + ' ' +user.lastname,{maxAge: 900000, httpOnly: false, path : '/'}); //added this for reading Name from the cookie --Aprajita
             res.status(200).json({
                 
                 user:user.username ,
@@ -180,16 +181,59 @@ app.post('/signup',function(req,res){
                 console.log("Error Creating User");
                 res.sendStatus(400).end();
             })
-        }  
-        
+        }          
     })  
-
-    
-    
-
 })
+});
 
+//fetch user details from the database
+app.get('/userDetails', function(req, res){
+    console.log('Request received for user: ', req.session.user);
 
+    Profiles.findOne({username: req.session.user.username}, function(err, user){
+        if(err) {
+            res.status(500).send({err});
+        }
+        if(!user){
+            console.log("User not found");
+            res.status(500).send({auth: false, message:"User not found"});
+        }
+        else{
+            res.status(200).send({auth: true, user});
+        }
+    });
+}
+)
+
+//update user details in the database
+app.post('/updateProfile', function(req, res){
+    console.log('Request received for user:', req.session.user);
+    var params = req.body.params;
+
+    user = {
+        firstname:params.firstname,
+        lastname: params.lastname,
+        gender: params.gender,
+        phone: params.phone,
+        home: params.home,
+        city: params.city,
+        school: params.school,
+        language: params.language,
+        aboutme: params.aboutme,
+        company: params.company,
+        category: params.category,
+    }
+
+    console.log(user);
+
+    Profiles.findByIdAndUpdate(req.session.user, user, function(err, result){
+        if(err) throw err;
+        if(!result){
+            console.log("User not found");
+            res.status(500).send({auth: false, status: "ERROR", message:"User not found"});
+        }
+        res.status(200).send({auth: true, status: "SUCCESS", user});
+    })
 });
 
 // Recommendation api
@@ -276,7 +320,7 @@ app.get('/api/get-recommendations', (req, res) => {
 });
         
 
-//Add middleware for http proxying 
+// //Add middleware for http proxying 
 var proxy_options = {
     target: 'http://api.eventful.com/json/events/search', // http://api.eventful.com/js/api/json/events/search
     router: {

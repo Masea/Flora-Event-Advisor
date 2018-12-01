@@ -114,7 +114,7 @@ onChange(e){
                                         minDate={new Date()}
                                         selectsStart
                                         placeholderText="From Date"
-                                        //dateFormat="MM/DD/YY"
+                                        dateFormat="YYYYMMdd" // DO NOT CHANGE THIS - if you change this then write a translation layer in between this and api. - Aprajita
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mx-2'>
@@ -127,7 +127,7 @@ onChange(e){
                                         minDate={this.state.startDate}
                                         selectsEnd
                                         placeholderText="To Date"
-                                        //dateFormat="MM/DD/YY"
+                                        dateFormat="YYYYMMdd" // DO NOT CHANGE THIS - if you change this then write a translation layer in between this and api. - Aprajita
                                     />
                                 </div> 
                                 <div className='input-group input-group-sm mr-1'>
