@@ -190,7 +190,7 @@ app.post('/signup',function(req,res){
 
 //fetch user details from the database
 app.get('/userDetails', function(req, res){
-    console.log('Request received for user: ', req.session.user);
+    console.log('Request received to fetch user details: ', req.session.user);
 
     Profiles.findOne({username: req.session.user.username}, function(err, user){
         if(err) {
@@ -209,7 +209,7 @@ app.get('/userDetails', function(req, res){
 
 //update user details in the database
 app.post('/updateProfile', function(req, res){
-    console.log('Request received for user:', req.session.user);
+    console.log('Request received to update details for user:', req.session.user);
     var params = req.body.params;
 
     user = {

@@ -22,7 +22,7 @@ class SearchResultPage extends Component{
             endDate     : parsed.endDate  || undefined,
             city        : parsed.city  || undefined,
             event       : parsed.event || undefined,
-            searchResults : [ ],
+            searchResults : [],
             recommendedResults: [
                                 {
                                     latitude: 37.2852, 
@@ -142,7 +142,7 @@ class SearchResultPage extends Component{
         })
         .catch( (error) => {
             //document.getElementById("loadingDiv").style.setProperty('display', 'none');
-            document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
         });
         this.setState({
             isLoadingSearch: false
@@ -155,7 +155,7 @@ class SearchResultPage extends Component{
             return <EventCard 
                         cardType="searched" 
                         event={result} 
-                        thumbnail={ "./images/loading.gif"}
+                        thumbnail="./images/loading.gif"
                     />
         });
 

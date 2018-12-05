@@ -129,7 +129,7 @@ class UserProfile extends Component{
 
     render(){
         let redirectVar = null;
-        if(!cookie.load('name')){
+        if(!cookie.load('cookie')){
             redirectVar = <Redirect to="/login" />;
         }
         return(
