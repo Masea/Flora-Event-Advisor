@@ -2,19 +2,22 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var session = require('express-session');
-const proxy = require('http-proxy-middleware');
+const URL = require('url').URL;
+const URLSearchParams = require('url').URLSearchParams;
+
 var cookieParser = require('cookie-parser');
 var cors = require('cors');
 var {Profiles} = require('./models/profile');
-//var mysql = require('mysql');
 
 var recommender = require('./recommender');
 var request = require('request');
 
 var crypt = require('./crypt');
 var {mongoose} = require('./mongoose');
-//var pool = require('./pool');
-//var db = require('./db');
+
+
+const EVENTFUL_APP_KEY = 'Zdpcf9VpbnwdCxTF';
+
 //app.use(cookieParser);
 //use cors for cross origin resourse sharing
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
@@ -317,23 +320,40 @@ app.get('/api/get-recommendations', (req, res) => {
     //`I received your POST request. This is what you sent me: ${req.body.post}`,
     );
 });
-        
+ 
+//fetch_events API endpoint to get search results
+app.get('/api/fetch_events', function(req, res){
+    const app_key   = EVENTFUL_APP_KEY;
+    const from_date = req.query.from_date;
+    const to_date   = req.query.to_date;
+    const city      = req.query.city;
+    const keywords  = req.query.keywords;
 
-// //Add middleware for http proxying 
-var proxy_options = {
-    target: 'http://api.eventful.com/json/events/search', // http://api.eventful.com/js/api/json/events/search
-    router: {
-        '/api/fetch_events' :   'http://api.eventful.com/json/events/search', 
-        '/events'           :   'http://www.eventful.com/events',
-    }
-}
-var apiProxy = proxy(proxy_options);
-app.use(apiProxy);
+    var url = new URL('http://api.eventful.com/json/events/search');
+    var params = new URLSearchParams({
+        app_key : app_key,
+        location    : city,
+        // keywords: keywords,
+        date    : from_date && to_date ? from_date + '-' + to_date : 'Future'
+    })
+    url.search = params;
 
-//routes
+    request(url, {json: true}, function(error, response, body){
+        if(!error && response.statusCode === 200){
+            console.log("Successfule response from Eventful API for " + url);
+            res.status(200).send(body);
+        }
+        else{
+            console.log("Error in fetching results from " + url + " : " + JSON.stringify(error));
+            console.log("Response from Eventful API : " + JSON.stringify(response));
+            console.log("Body from eventful API : " + JSON.stringify(body));
+            res.status(500).send("Error in fetching search results from Eventful API");
+        }
+    })
+})
 
 
-
-//start the server on port 3001
-app.listen(3001);
-console.log("Server listening on port # 3001");
+//start the server on port defined in env or 3001
+const port = process.env.PORT || 3001 ;
+app.listen(port);
+console.log("Server listening on port " + port);

@@ -16,12 +16,12 @@ class SearchResultPage extends Component{
         const parsed = qs.parse(this.props.location.search, { ignoreQueryPrefix: true });
 
         this.state = {
-            isLoading:  false,
+            isLoadingSearch:  false,
+            isLoadingRecs: false,
             startDate   : parsed.startDate || undefined,
             endDate     : parsed.endDate  || undefined,
             city        : parsed.city  || undefined,
             event       : parsed.event || undefined,
-            eventful_api_key    : process.env.EVENTFUL_API_KEY || 'Zdpcf9VpbnwdCxTF',
             searchResults : [ ],
             recommendedResults: [
                                 {
@@ -94,12 +94,11 @@ class SearchResultPage extends Component{
     {
         console.log("Fetching recommendations");
         this.setState({
-            isLoading: true,
+            isLoadingRecs: true,
         });
         axios.get('http://localhost:3001/api/get-recommendations' , {
             params: {   
                 username    : "Masi",
-                app_key     : this.state.eventful_api_key,
                 keywords    : this.state.event,
                 location    : this.state.city,
                 date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'           
@@ -118,43 +117,19 @@ class SearchResultPage extends Component{
             //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
         });
 
-        axios.get('http://localhost:3001/api/fetch_events' , {
-            params: {
-                app_key     : this.state.eventful_api_key,
-                keywords    : this.state.event,
-                location    : this.state.city,
-                date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future',
-            }
-        })
-        .then((response) => {
-            console.log(JSON.stringify(response.data.event));
-            if(response.data.total_items > 0){
-                this.setState({
-                    searchResults   : response.data.events.event,
-                });
-            }
-        })
-        .catch( (error) => {
-            //document.getElementById("loadingDiv").style.setProperty('display', 'none');
-            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
-        });
-        this.setState({
-            isLoading: false
-        });
-
     }
 
     fetchSearchResults(){
         console.log("Fetching search results");
         this.setState({
-            isLoading: true,
+            isLoadingSearch: true,
         });
         axios.get('http://localhost:3001/api/fetch_events' , {
             params: {
-                app_key     : this.state.eventful_api_key,
                 keywords    : this.state.event,
-                location    : this.state.city,
-                date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future',
+                city    : this.state.city,
+                from_date   : this.state.startDate,
+                to_date     :  this.state.endDate,
             }
         })
         .then((response) => {
@@ -167,10 +142,10 @@ class SearchResultPage extends Component{
         })
         .catch( (error) => {
             //document.getElementById("loadingDiv").style.setProperty('display', 'none');
-            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+            document.getElementById("search-results").innerText = "Error fetching search results - " + error;
         });
         this.setState({
-            isLoading: false
+            isLoadingSearch: false
         });
     }
 
@@ -220,10 +195,10 @@ class SearchResultPage extends Component{
                             <br />
                             <div className="container-fluid">
                                 <h5>Search Results</h5>
-                                <div id="loadingDiv" style={{display: this.state.isLoading ? 'block' : 'none'}}>
+                                <div id="loadingDiv" style={{display: this.state.isLoadingSearch ? 'block' : 'none'}}>
                                     <img src="./images/loading.gif" alt="loading"/>
                                 </div>
-                                <div className='d-flex flex-column flex-nowrap searched-results' id="search-results" style={{display: this.state.isLoading ? 'none' : 'flex'}}>
+                                <div className='d-flex flex-column flex-nowrap searched-results' id="search-results" style={{display: this.state.isLoadingSearch ? 'none' : 'flex'}}>
                                     {searchResults}
                                 </div>
                             </div>
