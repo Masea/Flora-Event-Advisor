@@ -328,7 +328,7 @@ app.get('/api/fetch_events', function(req, res){
     const to_date   = req.query.to_date;
     const city      = req.query.city;
     const keywords  = req.query.keywords;
-
+    
     var url = new URL('http://api.eventful.com/json/events/search');
     var params = new URLSearchParams({
         app_key : app_key,
@@ -341,12 +341,15 @@ app.get('/api/fetch_events', function(req, res){
     request(url, {json: true}, function(error, response, body){
         if(!error && response.statusCode === 200){
             console.log("Successfule response from Eventful API for " + url);
+            console.log("Response from Eventful API : ", body);
+           
             res.status(200).send(body);
         }
         else{
-            console.log("Error in fetching results from " + url + " : " + JSON.stringify(error));
-            console.log("Response from Eventful API : " + JSON.stringify(response));
-            console.log("Body from eventful API : " + JSON.stringify(body));
+            //console.log("Error in fetching results from " + url + " : " + JSON.stringify(error));
+            //console.log("Response from Eventful API : " + JSON.stringify(response));
+            //console.log("Body from eventful API : " + JSON.stringify(body));
+            console.log("Error in response");
             res.status(500).send("Error in fetching search results from Eventful API");
         }
     })

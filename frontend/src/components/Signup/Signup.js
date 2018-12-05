@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import './Signup.css';
 import axios from 'axios';
-import cookie from 'react-cookies';
+//import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import NavBar from '../NavBar/NavBar';
 import Select from 'react-select';

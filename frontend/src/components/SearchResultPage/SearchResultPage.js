@@ -151,11 +151,11 @@ class SearchResultPage extends Component{
 
     render(){
         
-        let searchResults = this.state.searchResults.map( (result) => {
-            return <EventCard 
+        let searchResults = this.state.searchResults.map( (result,index) => {
+            return <EventCard  key={index}
                         cardType="searched" 
                         event={result} 
-                        thumbnail="./images/loading.gif"
+                        thumbnail={result.image?result.image.url:"./images/flora-logo.png"}
                     />
         });
 
