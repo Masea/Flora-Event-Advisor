@@ -98,7 +98,7 @@ class SearchResultPage extends Component{
         });
         axios.get('http://localhost:3001/api/get-recommendations' , {
             params: {   
-                username    : "Masi",
+                username    : cookie.load('cookie'),
                 keywords    : this.state.event,
                 location    : this.state.city,
                 date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'           

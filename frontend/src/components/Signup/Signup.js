@@ -189,7 +189,7 @@ class Signup extends Component{
                 
                 
                 
-                    <div className="main-div" style={{"maxWidth": '50%'}}>
+                    <div className="main-div" style={{"maxWidth": '35%'}}>
                     <h3> Signup to Flora Event Advisor</h3>
                     <br/>   
                             

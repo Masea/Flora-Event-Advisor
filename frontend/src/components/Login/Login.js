@@ -141,7 +141,7 @@ class Login extends Component{
                 <p>Need an account? <Link to="/register" style={{color: 'blue'}}>SignUp</Link></p>
                         </div> */}
                 <div className="login-form">
-                    <div className="main-div" style={{"maxWidth": '50%'}}>
+                    <div className="main-div" style={{"maxWidth": '35%'}}>
                         
                             <h2 style={{textAlign: 'center'}}>Flora Account Login</h2>
                             {/* <h2 style={{"text-align": 'center'}}>Login </h2> */}

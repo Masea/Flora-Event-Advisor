@@ -240,14 +240,14 @@ app.post('/updateProfile', function(req, res){
 
 // Recommendation api
 app.get('/api/get-recommendations', (req, res) => {
-    console.log(req.body);
+    console.log(req.query);
     console.log("Inside recommender");
     
-    var username = req.body.username;
-    var app_key = req.body.app_key;
-    var keywords = req.body.keywords;
-    var location = req.body.location;
-    var date = req.body.date;
+    var username = req.query.username;
+    var app_key = req.query.app_key;
+    var keywords = req.query.keywords;
+    var location = req.query.location;
+    var date = req.query.date;
     
     /*
     // get user favorite cetegories array from db
