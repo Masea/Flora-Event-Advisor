@@ -95,6 +95,7 @@ class NavBar extends Component {
                                         minDate={new Date()}
                                         selectsStart
                                         placeholderText="From Date"
+                                        autoComplete="off"
                                         dateFormat="YYYYMMdd" // DO NOT CHANGE THIS - if you change this then write a translation layer in between this and api. - Aprajita
                                     />
                                 </div> 
@@ -108,6 +109,7 @@ class NavBar extends Component {
                                         minDate={this.state.startDate}
                                         selectsEnd
                                         placeholderText="To Date"
+                                        autoComplete="off"
                                         dateFormat="YYYYMMdd" // DO NOT CHANGE THIS - if you change this then write a translation layer in between this and api. - Aprajita
                                     />
                                 </div> 

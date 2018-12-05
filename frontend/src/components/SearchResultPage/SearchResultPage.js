@@ -177,7 +177,7 @@ class SearchResultPage extends Component{
             <div>
                 <NavBar/>
                 <div className='search-result-page'>
-                    <div className='container w-100 p-0'>
+                    <div className='container-fluid w-100 p-0'>
                     <div className='row justify-content-center'>
                         <div className='search-result-map col-md-7 col-sm-12 col-lg-7' id='locationMap'>
                             <SimpleMap 
