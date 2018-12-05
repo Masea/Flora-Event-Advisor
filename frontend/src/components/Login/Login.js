@@ -109,7 +109,7 @@ class Login extends Component{
 
     render(){
         //redirect based on successful login
-        console.log("Rendering Login Page") 
+        //console.log("Rendering Login Page") 
         let redirectVar = null;
         let errorlog = null;
         if(cookie.load('cookie')){

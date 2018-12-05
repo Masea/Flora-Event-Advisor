@@ -67,7 +67,7 @@ class NavBar extends Component {
     render() {
         let redirecVar = null;
         let loggedIn = cookie.load('cookie');
-        console.log("cookieVal", cookie.load('cookie'));
+        //console.log("cookieVal", cookie.load('cookie'));
         if(this.state.homeredirect){
             redirecVar = <Redirect to="/HomePage"/>
         }
