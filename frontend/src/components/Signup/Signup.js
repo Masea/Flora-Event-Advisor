@@ -6,6 +6,7 @@ import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import NavBar from '../NavBar/NavBar';
 import Select from 'react-select';
+import * as EmailVal from 'email-validator';
 
 const categories = [
 
@@ -58,6 +59,9 @@ class Signup extends Component{
             category : '',
             registerflag: false,
             errorflag: false,
+            InvalidEmail: false, 
+            Invalidpass : false,
+            emptyfield : false,
         }
         //Bind the handlers to this class
         this.changeHandler = this.changeHandler.bind(this);
@@ -75,6 +79,9 @@ class Signup extends Component{
         this.setState({
           [name]: value,
           errorflag : false,
+          InvalidEmail: false, 
+           Invalidpass : false,
+           emptyfield : false,
          
         });
     }     
@@ -85,6 +92,10 @@ class Signup extends Component{
             this.setState({
               [e.target.name] : e.target.value,
               errorflag : false,
+              
+            InvalidEmail: false, 
+            Invalidpass : false,
+            emptyfield : false,
           })
          
            
@@ -102,54 +113,92 @@ class Signup extends Component{
             email : this.state.email,
             password : this.state.password,
             category : this.state.category,
+            InvalidEmail: false, 
+            Invalidpass : false,
+            emptyfield : false,
         }
-        console.log("Register Request Data", data);
-        //set the with credentials to true
-        axios.defaults.withCredentials = true;
-        //make a post request with the user data
-        axios.post('http://localhost:3001/signup',data)
-            .then(response => {
-                console.log("Status Code : ",response.status);
-                if(response.status === 200){
-                    this.setState({
-                        registerflag : true
-                    })
-                    console.log("Success Post");
-                }else{
-                    
-                    this.setState({
-                        errorflag : true
-                    })
-                    console.log("Failure Post");
-                }
-            })
-            .catch((error) => {
-                // Error
-                if (error.response) {
 
-                    this.setState({
-                        errorflag : true
-                    })
-                    
-                } else if (error.request) {
-                    this.setState({
-                        errorflag : true
-                    })
-                    
-                    console.log(error.request);
-                } else {
-                    this.setState({
-                        errorflag : true
-                    })
-                    // Something happened in setting up the request that triggered an Error
-                    console.log('Error', error.message);
-                }
-                console.log(error.config);
-                this.setState({
-                    errorflag : true
+        if(data.firstname  && data.lastname && data.email && data.password && data.category)
+        {
+            //
+           if( data.password.length>6 && EmailVal.validate(data.email))
+            {
+            console.log("Signup Request Data", data);
+           
+            //set the with credentials to true
+            axios.defaults.withCredentials = true;
+            //make a post request with the user data
+            axios.post('http://localhost:3001/signup',data)
+                .then(response => {
+                    console.log("Status Code : ",response.status);
+                    if(response.status === 200){
+                        this.setState({
+                            registerflag : true
+                        })
+                        console.log("Success Post");
+                    }else{
+                        
+                        this.setState({
+                            errorflag : true
+                        })
+                        console.log("Failure Post");
+                    }
                 })
-            });
-        console.log("Login Request Completed")   
+                .catch((error) => {
+                    // Error
+                    if (error.response) {
+    
+                        this.setState({
+                            errorflag : true
+                        })
+                        
+                    } else if (error.request) {
+                        this.setState({
+                            errorflag : true
+                        })
+                        
+                        console.log(error.request);
+                    } else {
+                        this.setState({
+                            errorflag : true
+                        })
+                        // Something happened in setting up the request that triggered an Error
+                        console.log('Error', error.message);
+                    }
+                    console.log(error.config);
+                    this.setState({
+                        errorflag : true
+                    })
+                });
+                console.log("Login Request Completed") 
+            
+        
+        }
+            else{
+                 if(EmailVal.validate(data.email)){
+                     this.setState({Invalidpass : true});
+                 }
+                 else{
+                    this.setState({InvalidEmail : true});
+                 }
+
+
+
+
+            }
+        }
+        else{
+               
+            this.setState({emptyfield:true});
+
+        }
+
+
+
+
+
+
+         
  }
 
     render(){
@@ -157,11 +206,47 @@ class Signup extends Component{
         
         let redirectVar = null;
         let errorlog = null;
+        let emailerror = null;
+        let passerror = null;
+        let emptyerror = null;
         if(this.state.registerflag){
             //console.log("Valid Cookie, Redirect to Home");
             redirectVar = <Redirect to= "/login"/>
         }
-        
+        if(this.state.InvalidEmail){
+            emailerror = 
+            <div>
+            <div className="alert-danger" > 
+            Please Enter Valid Email
+            
+             </div>
+             <br/>
+              </div>
+        }
+        if(this.state.Invalidpass){
+            passerror = 
+            <div>
+            <div className="alert-danger" > 
+            Password should be at least 6 characters long
+            
+             </div>
+             <br/>
+             </div>
+             
+        }
+         if(this.state.emptyfield){
+             emptyerror = 
+             <div>
+             <div className="alert-danger" > 
+             Fields can not be empty
+             
+              </div>
+              <br/>
+              </div>
+         }
+
+    
+
         if(this.state.errorflag)
         {
 
@@ -182,17 +267,21 @@ class Signup extends Component{
                {redirectVar}
                <NavBar />
                <div className="jumbotron jumbotron-fluid"> 
-               {errorlog}
-            {/* <div className="container"> */}
+             
          
                 <div className="login-form"  >
                 
                 
-                
-                    <div className="main-div" style={{"maxWidth": '35%'}}>
+                  
+                    <div className="main-div" style={{"maxWidth": '40%'}}>
+                      
                     <h3> Signup to Flora Event Advisor</h3>
+                    <p font-size = "16px">Already have an account? <Link to="/login" style={{color: 'blue'}}>Login</Link></p>
                     <br/>   
-                            
+                             {errorlog}
+                            {emptyerror}
+                            {emailerror} 
+                            {passerror}  
                             <div className="form-group" >
                                 <input onChange = {this.changeHandler} type="text" className="form-control"  name="firstname" required={true} placeholder="First Name"/>
                             </div> 
@@ -215,7 +304,7 @@ class Signup extends Component{
               onChange={this.handleChange('category')} defaultValue={this.props.category}></Select>
                             </div>
                    
-                    <p font-size = "16px">Already have an account? <Link to="/login" style={{color: 'blue'}}>Login</Link></p>
+                    
                             <div style={{"textAlign": 'center'}}>
                             <button onClick = {this.submitRegister} className="btn btn-primary">Sign Me Up</button>                 
                             </div>
