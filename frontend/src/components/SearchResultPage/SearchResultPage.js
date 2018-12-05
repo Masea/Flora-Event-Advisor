@@ -155,7 +155,7 @@ class SearchResultPage extends Component{
             return <EventCard  key={index}
                         cardType="searched" 
                         event={result} 
-                        thumbnail={result.image?result.image.url:"./images/flora-logo.png"}
+                        thumbnail={result.image?result.image.url:"http:////d1marr3m5x4iac.cloudfront.net/store/skin/no_image/categories/250x250/other.jpg"}
                     />
         });
 

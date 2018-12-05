@@ -55,7 +55,7 @@ class EventCard extends Component{
                     <div className='searched mx-0' style={{display: this.props.cardType === 'searched' ? 'block':'none'}}>
                         <div className='row flex-row'>
                             <div className="col-3 px-0 border-0 align-self-center searchedImg">
-                                <img src={this.state.imgURL} alt="Searched Event" className='w-100'/>
+                                <img src={this.props.thumbnail?this.props.thumbnail:"http:////d1marr3m5x4iac.cloudfront.net/store/skin/no_image/categories/250x250/other.jpg "} alt="Searched Event" className='w-100'/>
                             </div>
                             <div className="col-8 pl-2 searchedData">
                                 <div className=" my-2 text-truncate">{this.stripHtml(this.state.eventTitle)}</div>
