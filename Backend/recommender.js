@@ -4,30 +4,54 @@ const ContentBasedRecommender = require('content-based-recommender')
 
 var recommender = {};
 
-recommender.recommend = function(userId, userCategories, eventData, successCallback)
+recommender.recommend = function(userId, userCategories, keywords, eventData, successCallback)
 {
+    console.log("inside recommend function");
     const recommender = new ContentBasedRecommender({
-        maxVectorSize: 50,
-        minScore: 0.5,
+        maxVectorSize: 700,
+        minScore: 0,
         maxSimilarDocuments: 10
     });
 
     // prepare documents data
     var documents = [];
-    // push event contents
-    documents = eventData.reduce((docs, e, index) => { 
-        docs.push({id: e.id, content: e.title + " " + e.description}); return docs; }, []);
-    // push user contents
-    documents.push(userId, userCategories.join());
+    //var eventDataJSON = JSON.parse(eventData);
+    //console.log("eventData");
+    //console.log(eventData);
 
-    // start training
-    recommender.train(documents);
+    const associativeEventData = {};
 
-    //get top 5 similar items to document 1000002
-    const similarDocuments = recommender.getSimilarDocuments(userId, 0, 5);
+    //if (eventData !== undefined && eventData !== null)
+    //{
+        // push event contents
+        eventData.forEach( (e) => { var ejson = e;//JSON.parse(e);
+            documents.push({id: ejson["id"], content: ejson["title"]+" "+ejson["description"] }); 
+            associativeEventData[ejson["id"]] = ejson;
+       });
+        // push user contents
+        documents.push({id: userId, content: userCategories.join(' ')+(keywords != "" ? " "+keywords : "")});
 
-    console.log(similarDocuments);
-    successCallback(similarDocuments);
+        //console.log("documents");
+        //console.log(documents);
+
+        // start training
+        recommender.train(documents);
+
+        //get top 5 similar items to document 1000002
+        const similarDocuments = recommender.getSimilarDocuments(userId, 0, 5);
+        const similarEventData = similarDocuments.map( item => { return associativeEventData[item.id]; } );
+        //const similarEventData = eventData.filter(item => similarDocIds.includes(item.id) );
+
+        console.log("similarDocuments");
+        console.log(similarDocuments);
+        //console.log("similarDocIds");
+        //console.log(similarDocIds);
+        console.log("similarEventData");
+        console.log(similarEventData);
+        
+        successCallback(similarEventData);
+    //}
+
     /*
       the higher the score, the more similar the item is
       documents with score < 0.1 are filtered because options minScore is set to 0.1

@@ -119,7 +119,8 @@ class UserProfile extends Component{
                 language: res.data.user.language,
                 gender: res.data.user.gender,
                 school: res.data.user.school,
-                role: res.data.user.role
+                role: res.data.user.role,
+                category: res.data.user.category
             });
         })
         .catch((err) => {

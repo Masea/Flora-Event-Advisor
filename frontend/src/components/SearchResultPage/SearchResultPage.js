@@ -24,7 +24,7 @@ class SearchResultPage extends Component{
             event       : parsed.event || undefined,
             searchResults : [],
             recommendedResults: [
-                                {
+                                /*{
                                     latitude: 37.2852, 
                                     longitude: -121.6311,
                                     description: "Recommendation 1",
@@ -79,7 +79,7 @@ class SearchResultPage extends Component{
                                     venue_address: "Address 21",
                                     id: 21,
                                     event_type: 'recommended'
-                                }
+                                }*/
 
             ]
         }
@@ -90,33 +90,73 @@ class SearchResultPage extends Component{
             this.getRecommendations();
     }
 
+
+    deepCopy(aObject) {
+      if (!aObject) {
+        return aObject;
+      }
+
+      let v;
+      let bObject = Array.isArray(aObject) ? [] : {};
+      for (const k in aObject) {
+        v = aObject[k];
+        bObject[k] = (typeof v === "object") ? this.deepCopy(v) : v;
+      }
+
+      return bObject;
+    }
+
     getRecommendations()
     {
         console.log("Fetching recommendations");
-        this.setState({
-            isLoadingRecs: true,
-        });
-        axios.get('http://localhost:3001/api/get-recommendations' , {
-            params: {   
-                username    : cookie.load('cookie'),
-                keywords    : this.state.event,
-                location    : this.state.city,
-                date        : this.state.startDate && this.state.endDate ? this.state.startDate + '-' + this.state.endDate : 'Future'           
-            }
-        })
-        .then((response) => {
-            console.log(JSON.stringify(response));
-            if(response.count > 0){
-                this.setState({
-                    recommendationResults   : response.data,
-                });
-            }
-        })
-        .catch( (error) => {
-            //document.getElementById("loadingDiv").style.setProperty('display', 'none');
-            //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
-        });
+        /*this.setState({
+            isLoading: true,
+        });*/
 
+        //console.log("eventData");
+        //console.log(eventData);
+        console.log("username");
+        console.log(cookie.load('cookie'));//this.props.location.state && this.props.location.state.referrer);
+        
+        /*axios.get('http://localhost:3001/api/get-recommendations' , {
+            params: {   
+                username    : cookie.load('cookie'),//this.props.location.state && this.props.location.state.referrer,//Cookie.load('cookie'),
+                data        : eventData,
+                keywords    : this.state.event,            }
+        })*/
+        if (cookie.load('cookie'))
+        {
+            axios.get('http://localhost:3001/api/get-recommendations' , {
+                params: {
+                    username    : cookie.load('cookie'),
+                    keywords    : this.state.event,
+                    city        : this.state.city,
+                    from_date   : this.state.startDate,
+                    to_date     : this.state.endDate
+                }
+            })
+            .then((response) => {
+                //var resJson = JSON.parse(response);
+                console.log(JSON.stringify(response));
+                console.log(response["data"]["recommendedResults"]);
+                
+                if(response["data"]["recommendedResults"] !== {}){
+                    this.setState({
+                        recommendedResults   : response["data"]["recommendedResults"],
+                    });
+                     console.log("JSON.stringify(this.state.recommendedResults)");
+                    console.log(this.state.recommendedResults);
+                }
+            })
+            .catch( (error) => { 
+                //document.getElementById("loadingDiv").style.setProperty('display', 'none');
+                //document.getElementById("search-results").innerText = "Error fetching search results - " + error;
+            });
+        }
+
+        /*this.setState({
+            isLoading: false
+        });*/
     }
 
     fetchSearchResults(){
@@ -127,17 +167,18 @@ class SearchResultPage extends Component{
         axios.get('http://localhost:3001/api/fetch_events' , {
             params: {
                 keywords    : this.state.event,
-                city    : this.state.city,
+                city        : this.state.city,
                 from_date   : this.state.startDate,
-                to_date     :  this.state.endDate,
+                to_date     :  this.state.endDate
             }
         })
         .then((response) => {
             console.log(JSON.stringify(response.data.event));
             if(response.data.total_items > 0){
                 this.setState({
-                    searchResults   : response.data.events.event,
+                    searchResults   : this.deepCopy(response.data.events.event),
                 });
+                //this.getRecommendations(this.state.searchResults);
             }
         })
         .catch( (error) => {
@@ -158,19 +199,13 @@ class SearchResultPage extends Component{
                         thumbnail={result.image?result.image.url:"http:////d1marr3m5x4iac.cloudfront.net/store/skin/no_image/categories/250x250/other.jpg"}
                     />
         });
-
-        let recommendedResults = this.state.recommendedResults.map( (event) => {
-            return <EventCard cardType="recommended" event={event} />
-        /*let recommendedResults = this.state.recommendedResults.map( (result) => {
-            return <EventCard 
+        
+        let recommendedResults = this.state.recommendedResults.map( (result,index) => {
+            return <EventCard  key={index}
                         cardType="recommended" 
                         event={result} 
-                        description={result.description} 
-                        id={result.id} 
-                        thumbnail={result.image.thumb.url} 
-                        venue_address={result.venue_address} 
-                        url={result.url}
-                    />*/
+                        thumbnail={result.image?result.image.url:"http:////d1marr3m5x4iac.cloudfront.net/store/skin/no_image/categories/250x250/other.jpg"}
+                    />
         });
 
         return(

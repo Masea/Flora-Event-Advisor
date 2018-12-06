@@ -114,7 +114,10 @@ class Login extends Component{
         let errorlog = null;
         if(cookie.load('cookie')){
             console.log("Valid Cookie, Redirect to Home");
-            redirectVar = <Redirect to= "/SearchResultPage"/>
+            redirectVar = <Redirect to= {{  
+                 pathname: '/SearchResultPage',      
+                 state: { referrer: this.state.username }        
+             }}/>
            
         }
         if(this.state.errorFlag){
