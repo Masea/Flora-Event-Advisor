@@ -122,7 +122,7 @@ class Signup extends Component{
         if(data.firstname  && data.lastname && data.email && data.password && data.category)
         {
             //
-           if( data.password.length>6 && EmailVal.validate(data.email))
+           if( data.password.length>5 && EmailVal.validate(data.email))
             {
             console.log("Signup Request Data", data);
            
