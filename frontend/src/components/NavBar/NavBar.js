@@ -143,9 +143,9 @@ class NavBar extends Component {
                                 <li className="nav-item mx-3">
                                     <Link to="/UserProfile"><span className='icon-text'><i className="fas fa-user fa-2x"></i><br />Me</span></Link>
                                 </li>
-                                <li className="nav-item mx-3">
+                                {/* <li className="nav-item mx-3">
                                     <Link to="/SavedEvents"><span className='icon-text'><i className="fas fa-heart fa-2x"></i><br/>Events</span></Link>
-                                </li>
+                                </li> */}
                                 <li className="nav-item mx-3">
                                     <button type="button" className='btn btn-danger' onClick={this.handleSignOut}>Logout</button>
                                 </li>

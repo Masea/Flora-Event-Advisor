@@ -381,9 +381,9 @@ app.get('/api/fetch_events', function(req, res){
             res.status(200).send(body);
         }
         else{
-            //console.log("Error in fetching results from " + url + " : " + JSON.stringify(error));
-            //console.log("Response from Eventful API : " + JSON.stringify(response));
-            //console.log("Body from eventful API : " + JSON.stringify(body));
+            console.log("Error in fetching results from " + url + " : " + JSON.stringify(error));
+            console.log("Response from Eventful API : " + JSON.stringify(response));
+            console.log("Body from eventful API : " + JSON.stringify(body));
             console.log("Error in response");
             res.status(500).send("Error in fetching search results from Eventful API");
         }
