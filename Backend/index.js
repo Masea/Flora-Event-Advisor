@@ -20,7 +20,7 @@ const EVENTFUL_APP_KEY = 'Zdpcf9VpbnwdCxTF';
 
 //app.use(cookieParser);
 //use cors for cross origin resourse sharing
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+app.use(cors({ origin: '*', credentials: true }));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
