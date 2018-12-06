@@ -5,6 +5,7 @@ import cookie from 'react-cookies';
 import axios from 'axios';
 import {Redirect} from 'react-router';
 import Select from 'react-select';
+import {BACKEND_HOST} from '../host_config';
 
 
 const categories = [
@@ -65,7 +66,7 @@ class UserProfile extends Component{
     }
 
     handleSave = (e) =>{
-        axios.post('http://localhost:3001/updateProfile', {
+        axios.post( BACKEND_HOST + '/updateProfile', {
             params: {
                 firstname: document.getElementById('input_fname').value,
                 lastname: document.getElementById('input_lname').value,
@@ -104,7 +105,7 @@ class UserProfile extends Component{
 
     componentDidMount () {
         console.log('Inside component did mount')
-        axios.get('http://localhost:3001/userDetails')
+        axios.get(BACKEND_HOST + '/userDetails')
         .then((res) => {
             console.log(res.data);
             this.setState({

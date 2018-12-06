@@ -7,6 +7,7 @@ import {Redirect} from 'react-router';
 import NavBar from '../NavBar/NavBar';
 import Select from 'react-select';
 import * as EmailVal from 'email-validator';
+import {BACKEND_HOST} from '../host_config';
 
 const categories = [
 
@@ -128,7 +129,7 @@ class Signup extends Component{
             //set the with credentials to true
             axios.defaults.withCredentials = true;
             //make a post request with the user data
-            axios.post('http://localhost:3001/signup',data)
+            axios.post(BACKEND_HOST + '/signup',data)
                 .then(response => {
                     console.log("Status Code : ",response.status);
                     if(response.status === 200){

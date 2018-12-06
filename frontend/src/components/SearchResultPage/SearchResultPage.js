@@ -7,6 +7,7 @@ import axios from 'axios';
 import * as qs from 'query-string';
 import cookie from 'react-cookies';
 // import {Redirect} from 'react-router';
+import {BACKEND_HOST} from '../host_config';
 
 class SearchResultPage extends Component{
 
@@ -126,7 +127,7 @@ class SearchResultPage extends Component{
         })*/
         if (cookie.load('cookie'))
         {
-            axios.get('http://localhost:3001/api/get-recommendations' , {
+            axios.get(BACKEND_HOST + '/api/get-recommendations' , {
                 params: {
                     username    : cookie.load('cookie'),
                     keywords    : this.state.event,
@@ -164,7 +165,7 @@ class SearchResultPage extends Component{
         this.setState({
             isLoadingSearch: true,
         });
-        axios.get('http://localhost:3001/api/fetch_events' , {
+        axios.get(BACKEND_HOST + '/api/fetch_events' , {
             params: {
                 keywords    : this.state.event,
                 city        : this.state.city,

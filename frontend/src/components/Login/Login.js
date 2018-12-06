@@ -7,6 +7,7 @@ import {Link} from 'react-router-dom';
 import cookie from 'react-cookies';
 import {Redirect} from 'react-router';
 import NavBar from '../NavBar/NavBar';
+import {BACKEND_HOST} from '../host_config';
 
 //Define a Login Component
 class Login extends Component{
@@ -57,7 +58,7 @@ class Login extends Component{
         axios.defaults.withCredentials = true;
         //make a post request with the user data
       // console.log("Sending Login Request", data);
-        axios.post('http://localhost:3001/login',data)   
+        axios.post(BACKEND_HOST + '/login',data)   
         .then(response => {
                 console.log("Status Code : ",response);
                 if(response.status === 200){

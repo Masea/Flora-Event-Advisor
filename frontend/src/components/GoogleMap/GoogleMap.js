@@ -61,7 +61,6 @@ class SimpleMap extends Component {
         zoom: 10,
       }
     }
-  
 
     render() {
       let map_markers = this.props.events.map((event) => {
@@ -76,6 +75,7 @@ class SimpleMap extends Component {
       });
       return (
         <GoogleMapReact
+            ref="googleMapReact"
             center={this.state.center}
             zoom={this.state.zoom}
             bootstrapURLKeys={{ key: 'AIzaSyBYs1DUU-Za2ZQ7wBu2LIWvdcX4qbeGSvU' }}
